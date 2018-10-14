@@ -9,11 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Input JSP</title>
     </head>
     <body>
         <h1>Hello World!</h1>
-        <form action="" method="POST">
+        <form action="InputControllerServlet" method="POST">
             <label for="key">Key</label>
             <input id="key" type="text" name="key"/>
             
@@ -21,7 +21,7 @@
             <input id="value" type="text" name="value"/>
             
             <label for="category">Category</label>
-            <select id="category">
+            <select id="category" type="text" name="category">
                 <option value="first">First Category</option>
                 <option value="second">Second Category</option>
             </select>
