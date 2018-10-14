@@ -15,6 +15,10 @@ public class RecordContainer {
     public RecordContainer() {
         records = new HashMap<String, RecordBean>();
     }
+
+    public RecordContainer(RecordContainer recordContainer) {
+        records = recordContainer.getAllRecords();
+    }
     
     public void addRecord(RecordBean record) 
         throws DuplicateKeyException {
@@ -24,6 +28,11 @@ public class RecordContainer {
         
         records.put(record.key, record);
         
+    }
+    
+    public Map<String, RecordBean> getAllRecords()
+    {
+        return new HashMap<>(records);
     }
     
 }

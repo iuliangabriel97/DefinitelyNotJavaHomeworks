@@ -12,6 +12,7 @@
         <title>Error JSP</title>
     </head>
     <body>
+        <h1>Error page</h1>
         <%
         out.print(request.getAttribute("error"));
         %>

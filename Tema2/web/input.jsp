@@ -4,6 +4,7 @@
     Author     : roungureanu
 --%>
 
+<%@page import="records.Categories"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,9 +23,38 @@
             
             <label for="category">Category</label>
             <select id="category" type="text" name="category">
-                <option value="first">First Category</option>
-                <option value="second">Second Category</option>
+                
+                <%
+                    Categories categories = (Categories)session.getAttribute("categories");
+                    Cookie cookies[] = request.getCookies();
+                    String latestCategory = null;
+                    if (cookies != null) {
+                        for (Cookie cookie : cookies)
+                        {
+                            if (cookie.getName().equals("InputControllerServlet.lastCategory")) 
+                            {
+                                latestCategory = cookie.getValue();
+                                break;
+                            }
+                        }
+                    }
+
+                    
+                    for (String value : categories.getCategories().keySet())
+                    {
+                        out.print("<option value=\"" + value + "\"");
+                        if (latestCategory != null && value.equals(latestCategory))
+                        {
+                            out.print(" selected");
+                        }
+                        out.print(">");
+                        out.print(categories.getCategories().get(value));
+                        out.print("</option>");
+                    }
+                %>
             </select>
+            
+            
             
             <input type="submit"/>
         </form>
