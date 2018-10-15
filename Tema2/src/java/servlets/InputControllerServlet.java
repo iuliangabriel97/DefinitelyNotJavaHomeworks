@@ -15,6 +15,8 @@ import records.Categories;
 import records.RecordBean;
 import records.RecordContainer;
 
+import captcha.CaptchaUtils;
+
 /**
  *
  * @author LucianAlexandru
@@ -63,6 +65,15 @@ public class InputControllerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+        if(CaptchaUtils.verify(gRecaptchaResponse) == false) {
+            getServletContext().log("Invalid Captcha");
+            request.setAttribute("error", "Invalid Captcha");
+            RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+            rd.forward(request, response);
+            return;
+        }
+        
         Categories categories;
         RecordContainer recordContainer;
         HttpSession session = request.getSession(true);
@@ -89,7 +100,6 @@ public class InputControllerServlet extends HttpServlet {
         categories = (Categories)session.getAttribute("categories");
         
         response.setContentType("text/html");
-        PrintWriter out=response.getWriter();
         
         RecordBean record=new RecordBean();
         record.setCategory(request.getParameter("category"));

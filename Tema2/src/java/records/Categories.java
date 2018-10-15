@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package records;
 
 import java.util.Map;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  *
@@ -16,7 +11,7 @@ public class Categories {
     private Map<String, String> categories;
 
     public Categories() {
-        this.categories = new HashMap<>();
+        this.categories = new TreeMap<>();
         
         categories.put("first", "First Category");
         categories.put("second", "Second Category");
@@ -24,7 +19,7 @@ public class Categories {
     }
 
     public Categories(Categories categoriesOld) {
-        this.categories = new HashMap<>(categoriesOld.categories);
+        this.categories = new TreeMap<>(categoriesOld.categories);
     }
 
     public Map<String, String> getCategories() {

@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Input JSP</title>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
     <body>
         <h1>Hello World!</h1>
@@ -54,7 +55,7 @@
                 %>
             </select>
             
-            
+            <div class="g-recaptcha" data-sitekey="6LdWMXUUAAAAACNxp6iLf_HQgYtVimQTGf3KHj3Z"></div>
             
             <input type="submit"/>
         </form>
