@@ -1,5 +1,6 @@
 package records;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import records.exceptions.DuplicateKeyException;
@@ -17,7 +18,7 @@ public class RecordContainer {
     }
 
     public RecordContainer(RecordContainer recordContainer) {
-        records = recordContainer.getAllRecords();
+        records = recordContainer.records;
     }
     
     public void addRecord(RecordBean record) 
@@ -30,9 +31,9 @@ public class RecordContainer {
         
     }
     
-    public Map<String, RecordBean> getAllRecords()
+    public Collection<RecordBean> getAllRecords()
     {
-        return new HashMap<>(records);
+        return records.values();
     }
     
 }

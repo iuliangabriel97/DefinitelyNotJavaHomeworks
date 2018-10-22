@@ -65,14 +65,14 @@ public class InputControllerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-        if(CaptchaUtils.verify(gRecaptchaResponse) == false) {
-            getServletContext().log("Invalid Captcha");
-            request.setAttribute("error", "Invalid Captcha");
-            RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
-            rd.forward(request, response);
-            return;
-        }
+//        String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+//        if(CaptchaUtils.verify(gRecaptchaResponse) == false) {
+//            getServletContext().log("Invalid Captcha");
+//            request.setAttribute("error", "Invalid Captcha");
+//            RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
+//            rd.forward(request, response);
+//            return;
+//        }
         
         Categories categories;
         RecordContainer recordContainer;

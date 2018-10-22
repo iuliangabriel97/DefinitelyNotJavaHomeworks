@@ -55,8 +55,11 @@
                 %>
             </select>
             
+            <%--
             <div class="g-recaptcha" data-sitekey="6LdWMXUUAAAAACNxp6iLf_HQgYtVimQTGf3KHj3Z"></div>
+            --%>
             
+            <br>
             <input type="submit"/>
         </form>
     </body>

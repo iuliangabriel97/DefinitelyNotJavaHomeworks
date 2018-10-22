@@ -7,21 +7,36 @@
 <%@page import="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="records.RecordBean"%>  
+<%@taglib prefix = "tlib" uri = "WEB-INF/tag_library.tld"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Result JSP</title>
+        <style>
+            table,th,td
+            {
+                border:1px solid black;
+            }
+        </style>
     </head>
     <body>
         <h1>Result page</h1>
-        <%
-        Map<String, RecordBean> records = (Map<String, RecordBean>)request.getAttribute("records");
-        for (String key : records.keySet())
-        {
-            out.print(records.get(key));
-            out.print("<br/>");
-        }
-        %>
+        
+        <tlib:record key="testKey" value="testValue"/>
+        <br>
+        
+        <table>
+        <tbody>
+            <tr><th>Key</th><th>Value</th><th>Category</th></tr>
+            <c:forEach items="${requestScope.records}" var="record">
+                <tr><td><c:out value="${record.key}"></c:out></td>
+                <td><c:out value="${record.value}"></c:out></td>
+                <td><c:out value="${record.category}"></c:out></td></tr>
+            </c:forEach>
+        </tbody>
+        </table>
+        
     </body>
 </html>
