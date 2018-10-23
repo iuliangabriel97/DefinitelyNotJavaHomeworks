@@ -6,8 +6,9 @@
 
 <%@page import="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="records.RecordBean"%>  
+<%@page import="records.RecordBean"%>
 <%@taglib prefix = "tlib" uri = "WEB-INF/tag_library.tld"%>
+<%@taglib prefix="tcustom" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -27,6 +28,9 @@
         <%--<tlib:record key="testKey" value="testValue"/>--%>
         <br>
         
+        <tcustom:jstl_table records="${requestScope.records}"/>
+        
+        <%--
         <table>
         <tbody>
             <tr><th>Key</th><th>Value</th><th>Category</th></tr>
@@ -35,6 +39,7 @@
             </c:forEach>
         </tbody>
         </table>
+        --%>
         
     </body>
 </html>
