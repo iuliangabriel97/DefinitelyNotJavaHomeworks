@@ -125,9 +125,10 @@ public class ResponseWrapperFilter implements Filter {
         output = output.replace("<body>", "<body><h3>Prelude</h3>");
         output = output.replace("</body>", "<h3>Coda</h3></body>");
         
-        log("!!!! CURRENT OUTPUT " + output);
+//        log("!!!! CURRENT OUTPUT " + output);
         
         response.getWriter().write(output);
+        response.getWriter().close();
         
         doAfterProcessing(request, response);
 
