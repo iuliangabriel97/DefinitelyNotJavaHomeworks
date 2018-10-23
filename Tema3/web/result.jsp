@@ -24,16 +24,14 @@
     <body>
         <h1>Result page</h1>
         
-        <tlib:record key="testKey" value="testValue"/>
+        <%--<tlib:record key="testKey" value="testValue"/>--%>
         <br>
         
         <table>
         <tbody>
             <tr><th>Key</th><th>Value</th><th>Category</th></tr>
             <c:forEach items="${requestScope.records}" var="record">
-                <tr><td><c:out value="${record.key}"></c:out></td>
-                <td><c:out value="${record.value}"></c:out></td>
-                <td><c:out value="${record.category}"></c:out></td></tr>
+                <tlib:record key="${record.key}" value="${record.value}" category="${record.category}"/>
             </c:forEach>
         </tbody>
         </table>

@@ -48,8 +48,8 @@ public class RecordTag extends SimpleTagSupport {
     public void doTag() throws JspException, IOException {
         // Create dynamic content
         JspWriter out = getJspContext().getOut();
-        out.print("Test tag: " + key + ", " + value + ", " + category + "<br>");
-        //out.print("<tr><td>" + key + "</td><td>" + value + "</td><td>"+ category + "</td></tr>");
+//        out.print("Test tag: " + key + ", " + value + ", " + category + "<br>");
+        out.print("<tr><td>" + key + "</td><td>" + value + "</td><td>"+ category + "</td></tr>");
     }
     
 }

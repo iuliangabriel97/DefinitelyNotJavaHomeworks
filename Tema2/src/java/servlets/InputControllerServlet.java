@@ -98,6 +98,8 @@ public class InputControllerServlet extends HttpServlet {
         }
         
         categories = (Categories)session.getAttribute("categories");
+        if (categories == null)
+            categories = new Categories();
         
         response.setContentType("text/html");
         
