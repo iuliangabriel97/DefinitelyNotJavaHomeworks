@@ -9,6 +9,9 @@
  * @author roungureanu
  */
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -36,6 +39,11 @@ public class Course {
     }
     
     public String getName() {
+        try {
+            DatabaseUtils.connect();
+        } catch (SQLException ex) {
+            Logger.getLogger(Course.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return name;
     }
     
