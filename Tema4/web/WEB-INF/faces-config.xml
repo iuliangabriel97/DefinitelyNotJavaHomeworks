@@ -1,0 +1,16 @@
+<faces-config>
+    <navigation-rule>
+        <from-view-id>/viewCourse.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>createCourse</from-outcome>
+            <to-view-id>/createCourse.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/createCourse</from-view-id>
+        <navigation-case>
+            <from-outcome>viewCourse</from-outcome>
+            <to-view-id>/viewCourse.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>
