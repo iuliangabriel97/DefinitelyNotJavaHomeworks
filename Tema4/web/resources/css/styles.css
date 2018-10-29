@@ -29,3 +29,26 @@ and open the template in the editor.
    text-align:center;
    background:none repeat scroll 0 0 #E0E0FF;
 }
+
+
+.lecturersTable {   
+   border-collapse:collapse;
+   border:1px solid #000000;
+}
+
+.lecturersTableHeader {
+   text-align:center;
+   background:none repeat scroll 0 0 #FFFFE0;
+   border-bottom:1px solid #000000; 
+   padding:5px;
+}
+
+.lecturersTableOddRow {
+   text-align:center;
+   background:none repeat scroll 0 0 #FFE0E0;	
+}
+
+.lecturersTableEvenRow {
+   text-align:center;
+   background:none repeat scroll 0 0 #E0FFE0;
+}

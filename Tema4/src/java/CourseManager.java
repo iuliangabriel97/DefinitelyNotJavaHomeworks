@@ -24,7 +24,7 @@ public class CourseManager {
     public CourseManager() {}
 
     @PostConstruct
-    public void populateEmployeeList(){
+    public void populateList(){
         for(int i = 1 ; i <= 10 ; i++){
             Course course = new Course();
             course.setName("Course " + i);

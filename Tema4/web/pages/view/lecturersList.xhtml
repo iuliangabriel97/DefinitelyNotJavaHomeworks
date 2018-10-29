@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+xmlns:h = "http://java.sun.com/jsf/html"
+xmlns:f = "http://java.sun.com/jsf/core">
+    
+    <h:head>
+        <title>Lecturers List</title>
+        <h:outputStylesheet library = "css" name = "styles.css"/>
+    </h:head>
+    
+    <h:body>
+        <h:form>
+            <h:dataTable value = "#{lecturerManager.lecturers}" var = "lecturer"
+                styleClass = "lecturersTable"
+                headerClass = "lecturersTableHeader"
+                rowClasses = "lecturersTableOddRow,lecturersTableEvenRow">
+
+                <h:column>    				
+                   <f:facet name = "header">Course</f:facet>    				
+                   #{lecturer.name}
+                </h:column>
+
+                <h:column>
+                   <f:facet name = "header">Website</f:facet>
+                   #{lecturer.url}
+                </h:column>
+
+            </h:dataTable>
+        </h:form>
+        
+        <h:form>
+            <h:commandButton id="createLecturer" value="Create Lecturer" action="createLecturer"/>
+        </h:form>
+    </h:body>
+</html>
+

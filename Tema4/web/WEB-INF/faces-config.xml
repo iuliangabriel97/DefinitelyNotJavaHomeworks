@@ -9,12 +9,23 @@
             <from-outcome>viewCourses</from-outcome>
             <to-view-id>/pages/view/coursesList.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>viewLecturers</from-outcome>
+            <to-view-id>/pages/view/lecturersList.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/pages/view/coursesList.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>createCourse</from-outcome>
             <to-view-id>/config/edit/course.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/pages/view/lecturersList.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>createLecturer</from-outcome>
+            <to-view-id>/config/edit/lecturer.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -26,6 +37,17 @@
         <navigation-case>
             <from-outcome>viewCourses</from-outcome>
             <to-view-id>/pages/view/coursesList.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/config/edit/lecturer.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>lecturerManager.addLecturer(lecturer)</from-outcome>
+            <to-view-id>/pages/view/lecturersList.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>viewLecturers</from-outcome>
+            <to-view-id>/pages/view/lecturersList.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>
