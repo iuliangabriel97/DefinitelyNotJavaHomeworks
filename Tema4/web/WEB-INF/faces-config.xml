@@ -4,24 +4,28 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
     <navigation-rule>
-        <from-view-id>/pages/view/viewCourse.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>createCourse</from-outcome>
-            <to-view-id>/config/edit/createCourse.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <from-view-id>/config/edit/createCourse.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>viewCourse</from-outcome>
-            <to-view-id>/pages/view/viewCourse.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>viewCourse</from-outcome>
-            <to-view-id>/pages/view/viewCourse.xhtml</to-view-id>
+            <from-outcome>viewCourses</from-outcome>
+            <to-view-id>/pages/view/coursesList.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/pages/view/coursesList.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>createCourse</from-outcome>
+            <to-view-id>/config/edit/course.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/config/edit/course.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>#{courseManager.addCourse}</from-outcome>
+            <to-view-id>/pages/view/coursesList.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>viewCourses</from-outcome>
+            <to-view-id>/pages/view/coursesList.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

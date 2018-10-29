@@ -1,0 +1,31 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 29, 2018, 8:43:40 PM
+    Author     : LucianAlexandru
+*/
+
+.coursesTable {   
+   border-collapse:collapse;
+   border:1px solid #000000;
+}
+
+.coursesTableHeader {
+   text-align:center;
+   background:none repeat scroll 0 0 #FFE0FF;
+   border-bottom:1px solid #000000; 
+   padding:5px;
+}
+
+.coursesTableOddRow {
+   text-align:center;
+   background:none repeat scroll 0 0 #FFE0E0;	
+}
+
+.coursesTableEvenRow {
+   text-align:center;
+   background:none repeat scroll 0 0 #E0E0FF;
+}

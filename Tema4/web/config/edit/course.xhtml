@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Course creation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        
+        <h:form>
+            Course Name
+            <h:inputText id="courseName" value="#{course.name}" required="true"/>
+            <br/>
+            Year of study    
+            <h:inputText id="yearOfStudy" value="#{course.yearOfStudy}" required="true"/>
+            <br/>
+            Semester
+            <h:inputText id="semester" value="#{course.semester}" required="true"/>
+            <br/>
+            <h:commandButton id="submit" value="Submit" action="#{courseManager.addCourse(course)}" />
+        </h:form>
+        
+        <br/>
+        <h:form>
+            <h:commandButton id="courses" value="Back" action="viewCourses"/>
+        </h:form>
+        
+    </h:body>
+</html>

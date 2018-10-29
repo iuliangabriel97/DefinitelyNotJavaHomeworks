@@ -15,9 +15,10 @@ import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-@ManagedBean(name = "course")
+@ManagedBean
 @RequestScoped
 public class Course {
+    
     private String name;
     private Integer yearOfStudy;
     private Integer semester;
@@ -50,4 +51,5 @@ public class Course {
     public void setName(String name) {
         this.name = name;
     }
+    
 }
