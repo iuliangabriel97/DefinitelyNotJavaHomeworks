@@ -36,12 +36,29 @@ public class DatabaseUtils {
        
         conn = DriverManager.getConnection(DB_URL, USER, PASS);
         
+        String coursePackage;
+        String lecturerId;
+        
+        if (course.getPackage_() == null)
+            coursePackage = "NULL";
+        else
+            coursePackage = course.getPackage_().toString();
+        
+        if (course.getLecturer_id() == null)
+            lecturerId = "NULL";
+        else
+            lecturerId = course.getLecturer_id().toString();
+        
         stmt = conn.createStatement();
-        String query = "INSERT INTO courses(name, \"yearOfStudy\", semester) VALUES ("
+        String query = "INSERT INTO courses(name, \"yearOfStudy\", semester, package, lecturer_id) VALUES ("
                 + "'" + course.getName() + "',"
                 + course.getYearOfStudy().toString()
                 + ","
                 + course.getSemester().toString()
+                + ","
+                + coursePackage
+                + ","
+                + lecturerId
                 + ")";
         stmt.executeUpdate(query);
    }
