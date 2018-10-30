@@ -22,6 +22,8 @@ public class Course {
     private String name;
     private Integer yearOfStudy;
     private Integer semester;
+    private Integer package_;
+    private Integer lecturer_id;
 
     public Integer getYearOfStudy() {
         return yearOfStudy;
@@ -40,16 +42,29 @@ public class Course {
     }
     
     public String getName() {
-        try {
-            DatabaseUtils.connect();
-        } catch (SQLException ex) {
-            Logger.getLogger(Course.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return name;
     }
     
     public void setName(String name) {
         this.name = name;
     }
+
+    public Integer getPackage_() {
+        return package_;
+    }
+
+    public void setPackage_(Integer package_) {
+        this.package_ = package_;
+    }
+
+    public Integer getLecturer_id() {
+        return lecturer_id;
+    }
+
+    public void setLecturer_id(Integer lecture_id) {
+        this.lecturer_id = lecture_id;
+    }
+    
+    
     
 }

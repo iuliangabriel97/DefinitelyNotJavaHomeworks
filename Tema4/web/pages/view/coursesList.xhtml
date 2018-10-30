@@ -35,6 +35,16 @@ xmlns:f = "http://java.sun.com/jsf/core">
                    <f:facet name = "header">Semester</f:facet>
                    #{course.semester}
                 </h:column>
+                
+                <h:column>
+                   <f:facet name = "header">Package</f:facet>
+                   #{course.package_}
+                   </h:column>
+                
+                <h:column>
+                   <f:facet name = "header">Lecturer ID</f:facet>
+                   #{course.lecturer_id}
+                </h:column>
 
             </h:dataTable>
         </h:form>

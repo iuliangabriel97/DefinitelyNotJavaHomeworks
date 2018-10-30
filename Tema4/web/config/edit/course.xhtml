@@ -23,6 +23,12 @@ and open the template in the editor.
             Semester
             <h:inputText id="semester" value="#{course.semester}" required="true"/>
             <br/>
+            Package
+            <h:inputText id="package_" value="#{course.package_}"/>
+            <br/>
+            Lecturer ID
+            <h:inputText id="lecturer_id" value="#{course.lecturer_id}"/>
+            <br/>
             <h:commandButton id="submit" value="Submit" action="#{courseManager.addCourse(course)}" />
         </h:form>
         

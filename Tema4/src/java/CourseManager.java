@@ -9,14 +9,18 @@
  * @author LucianAlexandru
  */
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class CourseManager {
     
     private List<Course> courses = new ArrayList<Course>();
@@ -25,12 +29,10 @@ public class CourseManager {
 
     @PostConstruct
     public void populateList(){
-        for(int i = 1 ; i <= 10 ; i++){
-            Course course = new Course();
-            course.setName("Course " + i);
-            course.setYearOfStudy(i/4);
-            course.setSemester((i/2)%2);
-            courses.add(course);
+        try {
+            courses = DatabaseUtils.retrieveCourses();
+        } catch (SQLException ex) {
+            Logger.getLogger(CourseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -43,7 +45,11 @@ public class CourseManager {
     }
     
     public void addCourse(Course course) {
-        courses.add(course);
+        try {
+            DatabaseUtils.insertCourse(course);
+        } catch (SQLException ex) {
+            Logger.getLogger(CourseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
