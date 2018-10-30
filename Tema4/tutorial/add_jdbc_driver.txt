@@ -1,0 +1,2 @@
+click dreapta pe proiect -> Properties -> Libraries -> Add Library... -> Import... -> PostgreSQL JDBC Driver
+dupa aia, tot din properties -> Build -> Packaing -> Add Library... -> Import... -> PostgreSQL JDBC Driver
