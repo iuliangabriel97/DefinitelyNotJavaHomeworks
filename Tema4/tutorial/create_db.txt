@@ -55,3 +55,26 @@ WITH (
 ALTER TABLE public.courses
   OWNER TO java_lab4;
 GRANT ALL ON TABLE public.courses TO java_lab4;
+
+
+CREATE SEQUENCE public.package_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 3
+  CACHE 1;
+ALTER TABLE public.package_id_seq
+  OWNER TO postgres;
+
+CREATE TABLE public.courses_packages
+(
+  id integer NOT NULL DEFAULT nextval('package_id_seq'::regclass),
+  year integer,
+  semester integer,
+  CONSTRAINT courses_packages_id_pk PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.courses_packages
+  OWNER TO postgres;

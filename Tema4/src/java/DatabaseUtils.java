@@ -60,6 +60,55 @@ public class DatabaseUtils {
                 + "')";
         stmt.executeUpdate(query);
    }
+   public static void insertCoursePackage(CoursesPackage coursePackage) throws SQLException
+   {
+        Connection conn = null;
+        Statement stmt = null;
+       
+        conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        
+        stmt = conn.createStatement();
+        String query = "INSERT INTO courses_packages(year, semester) " + 
+                "VALUES (" + coursePackage.getYear() + "," + coursePackage.getSemester() + ")";
+        stmt.executeUpdate(query);
+   }
+   
+   public static List<CoursesPackage> retrieveCoursePackages() throws SQLException
+   {
+        List<CoursesPackage> result = new ArrayList<CoursesPackage>();
+        
+        CoursesPackage coursePackage;
+       
+        Connection conn = null;
+        Statement stmt = null;
+       
+        conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        
+        stmt = conn.createStatement();
+        String query = "SELECT id, year, semester FROM courses_packages";
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while(rs.next())
+        {
+             //Retrieve by column name
+            int id  = rs.getInt("id");
+            Integer yearOfStudy = rs.getInt("year");
+            Integer semester = rs.getInt("semester");
+
+            coursePackage = new CoursesPackage();
+            coursePackage.setId(id);
+            coursePackage.setSemester(semester);
+            coursePackage.setYear(yearOfStudy);
+            
+            result.add(coursePackage);
+        }
+        
+        rs.close();
+        stmt.close();
+        conn.close();
+    
+        return result;      
+   }
    
    public static List<Course> retrieveCourses() throws SQLException
    {

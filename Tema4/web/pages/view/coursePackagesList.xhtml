@@ -10,47 +10,37 @@ xmlns:h = "http://java.sun.com/jsf/html"
 xmlns:f = "http://java.sun.com/jsf/core">
     
     <h:head>
-        <title>Courses List</title>
+        <title>Courses Packages List</title>
         <h:outputStylesheet library = "css" name = "styles.css"/>
     </h:head>
     
     <h:body>
         <h:form>
-            <h:dataTable value = "#{courseManager.courses}" var = "course"
+            <h:dataTable value = "#{coursesPackagesManager.coursesPackages}" var = "package"
                 styleClass = "coursesTable"
                 headerClass = "coursesTableHeader"
                 rowClasses = "coursesTableOddRow,coursesTableEvenRow">
 
                 <h:column>    				
-                   <f:facet name = "header">Course</f:facet>    				
-                   #{course.name}
+                   <f:facet name = "header">ID</f:facet>    				
+                   #{package.id}
                 </h:column>
 
                 <h:column>
                    <f:facet name = "header">Year</f:facet>
-                   #{course.yearOfStudy}
+                   #{package.year}
                 </h:column>
 
                 <h:column>
                    <f:facet name = "header">Semester</f:facet>
-                   #{course.semester}
-                </h:column>
-                
-                <h:column>
-                   <f:facet name = "header">Package</f:facet>
-                   #{course.package_}
-                   </h:column>
-                
-                <h:column>
-                   <f:facet name = "header">Lecturer</f:facet>
-                   #{course.lecturer_id}
+                   #{package.semester}
                 </h:column>
 
             </h:dataTable>
         </h:form>
         
         <h:form>
-            <h:commandButton id="createCourse" value="Create Course" action="createCourse"/>
+            <h:commandButton id="createCourse" value="Create Course Package" action="createCoursePackage"/>
         </h:form>
     </h:body>
 </html>

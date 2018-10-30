@@ -15,6 +15,11 @@
             <to-view-id>/pages/view/lecturersList.xhtml?faces-redirect=true</to-view-id>
             <redirect />
         </navigation-case>
+        <navigation-case>
+            <from-outcome>viewPackages</from-outcome>
+            <to-view-id>/pages/view/coursePackagesList.xhtml?faces-redirect=true</to-view-id>
+            <redirect />
+        </navigation-case>
     </navigation-rule>
     
     <navigation-rule>
@@ -30,6 +35,14 @@
         <navigation-case>
             <from-outcome>createLecturer</from-outcome>
             <to-view-id>/config/edit/lecturer.xhtml?faces-redirect=true</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/pages/view/coursePackagesList.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>createCoursePackage</from-outcome>
+            <to-view-id>/config/edit/coursePackage.xhtml?faces-redirect=true</to-view-id>
         </navigation-case>
     </navigation-rule>
     
@@ -54,6 +67,18 @@
         <navigation-case>
             <from-outcome>viewLecturers</from-outcome>
             <to-view-id>/pages/view/lecturersList.xhtml?faces-redirect=true</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/config/edit/coursePackage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>coursesPackagesManager.addCoursePackage(coursePackage)</from-outcome>
+            <to-view-id>/pages/view/coursePackagesList.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>viewPackages</from-outcome>
+            <to-view-id>/pages/view/coursePackagesList.xhtml?faces-redirect=true</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>
