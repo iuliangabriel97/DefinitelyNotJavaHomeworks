@@ -133,7 +133,11 @@ public class DatabaseUtils {
             Integer yearOfStudy = rs.getInt("yearOfStudy");
             Integer semester = rs.getInt("semester");
             Integer package_ = rs.getInt("package");
+            if (rs.wasNull())
+                package_ = null;
             Integer lecturer_id = rs.getInt("lecturer_id");
+            if (rs.wasNull())
+                lecturer_id = null;
 
             course = new Course();
             course.setName(name);
