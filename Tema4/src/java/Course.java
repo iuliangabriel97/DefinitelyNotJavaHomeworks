@@ -24,7 +24,8 @@ public class Course {
     private Integer semester;
     private Integer package_;
     private Integer lecturer_id;
-
+    private Lecturer lecturer;
+    
     public Integer getYearOfStudy() {
         return yearOfStudy;
     }
@@ -63,6 +64,14 @@ public class Course {
 
     public void setLecturer_id(Integer lecture_id) {
         this.lecturer_id = lecture_id;
+    }
+
+    public Lecturer getLecturer() {
+        return lecturer;
+    }
+
+    public void setLecturer(Lecturer lecturer) {
+        this.lecturer = lecturer;
     }
     
     

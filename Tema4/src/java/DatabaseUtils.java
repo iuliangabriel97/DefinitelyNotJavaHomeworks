@@ -155,13 +155,19 @@ public class DatabaseUtils {
             Integer lecturer_id = rs.getInt("lecturer_id");
             if (rs.wasNull())
                 lecturer_id = null;
-
+            
             course = new Course();
             course.setName(name);
             course.setSemester(semester);
             course.setYearOfStudy(yearOfStudy);
             course.setPackage_(package_);
             course.setLecturer_id(lecturer_id);
+            
+            Lecturer lecturer = null;
+            if (lecturer_id != null)
+                lecturer = DatabaseUtils.retrieveLecturer(lecturer_id);
+            
+            course.setLecturer(lecturer);
             
             result.add(course);
         }
@@ -196,6 +202,7 @@ public class DatabaseUtils {
             String website = rs.getString("website");
 
             lecturer = new Lecturer();
+            lecturer.setId(id);
             lecturer.setName(name);
             lecturer.setUrl(website);
             
@@ -207,5 +214,39 @@ public class DatabaseUtils {
         conn.close();
     
         return result;      
+   }
+   
+   public static Lecturer retrieveLecturer(Integer lecturer_id) throws SQLException
+   { 
+        Lecturer lecturer = null;
+       
+        Connection conn = null;
+        Statement stmt = null;
+       
+        conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        
+        stmt = conn.createStatement();
+        String query = "SELECT id, name, website FROM teachers WHERE id = " + lecturer_id;
+        ResultSet rs = stmt.executeQuery(query);
+        
+        while(rs.next())
+        {
+             //Retrieve by column name
+            int id  = rs.getInt("id");
+            String name = rs.getString("name");
+            String website = rs.getString("website");
+
+            lecturer = new Lecturer();
+            lecturer.setName(name);
+            lecturer.setUrl(website);
+            
+            break;
+        }
+        
+        rs.close();
+        stmt.close();
+        conn.close();
+    
+        return lecturer;
    }
 }

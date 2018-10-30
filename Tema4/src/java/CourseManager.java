@@ -24,7 +24,8 @@ import javax.faces.bean.SessionScoped;
 public class CourseManager {
     
     private List<Course> courses = new ArrayList<Course>();
-
+    private List<Lecturer> lecturers = new ArrayList<Lecturer>();
+    
     public CourseManager() {}
 
     @PostConstruct
@@ -34,12 +35,22 @@ public class CourseManager {
         } catch (SQLException ex) {
             Logger.getLogger(CourseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            lecturers = DatabaseUtils.retrieveLecturers();
+        } catch (SQLException ex) {
+            Logger.getLogger(CourseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public List<Course> getCourses() {
         return courses;
     }
 
+    public List<Lecturer> getLecturers()
+    {
+        return lecturers;
+    }
+    
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }

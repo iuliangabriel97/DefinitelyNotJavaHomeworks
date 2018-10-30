@@ -6,7 +6,9 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
- xmlns:h="http://java.sun.com/jsf/html">
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Course creation</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -27,8 +29,16 @@ and open the template in the editor.
             <h:inputText id="package_" value="#{course.package_}"/>
             <br/>
             Lecturer ID
-            <h:inputText id="lecturer_id" value="#{course.lecturer_id}"/>
-            <br/>
+            <!--<h:inputText id="lecturer_id" value="#{course.lecturer_id}"/>-->
+            <!--<br/>-->
+            
+            
+            
+            <h:selectOneMenu id="whatevs" value="#{course.lecturer_id}">
+                
+                <f:selectItems value="#{lecturerManager.lecturers}" var="lecturer"
+   			itemLabel="#{lecturer.name}" itemValue="#{lecturer.id}" />
+            </h:selectOneMenu>
             <h:commandButton id="submit" value="Submit" action="#{courseManager.addCourse(course)}" />
         </h:form>
         
