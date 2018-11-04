@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"   
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html">
+    
+    <f:loadBundle basename="strings" var="strings"/>
+    
+    <ul>
+      <li><a href="/Tema4"><h:outputText value="#{strings['home']}" /></a></li>
+      <ri>
+        <h:selectOneMenu value = "#{localeData.locale}">
+            <f:selectItems value = "#{localeData.countries}" /> 
+            <f:ajax listener="#{localeData.localeChanged}" />
+        </h:selectOneMenu>
+      </ri>
+    </ul>
+     
+</ui:composition>

@@ -25,6 +25,10 @@ li a {
     padding: 8px;
 }
 
+ri {
+    float: right;
+}
+
 .footer {
     position: fixed;
     left: 0;
