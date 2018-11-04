@@ -13,7 +13,8 @@
     <ui:define name="content">
         Facelet Courses
         <h:form>
-            <h:outputText id="counter" value="#{sessionsCount.count}" />
+            <b>Sessions count:
+                <h:outputText id="counter" value="#{sessionsCount.count}" /></b>
             <p:poll interval="2" listener="#{sessionsCount.getCount}" update="counter" />
         </h:form>
         <h:form>
