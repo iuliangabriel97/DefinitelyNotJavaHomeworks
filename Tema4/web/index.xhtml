@@ -5,12 +5,17 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
     xmlns:ui="http://java.sun.com/jsf/facelets" >
     
     <ui:define name="title">Facelet Home</ui:define>
     
     <ui:define name="content">
         Facelet Courses
+        <h:form>
+            <h:outputText id="counter" value="#{sessionsCount.count}" />
+            <p:poll interval="2" listener="#{sessionsCount.getCount}" update="counter" />
+        </h:form>
         <h:form>
             <h:commandButton id="courses" value="View Courses" action="viewCourses"/>
         </h:form>

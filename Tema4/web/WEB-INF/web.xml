@@ -25,4 +25,7 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+    <listener>
+        <listener-class>SessionsCounterListener</listener-class>
+    </listener>
 </web-app>
