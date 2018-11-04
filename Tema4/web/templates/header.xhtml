@@ -10,16 +10,21 @@ and open the template in the editor.
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://java.sun.com/jsf/html">
     
+    <f:view locale="#{localeData.locale}"/>
     <f:loadBundle basename="strings" var="strings"/>
     
     <ul>
-      <li><a href="/Tema4"><h:outputText value="#{strings['home']}" /></a></li>
-      <ri>
-        <h:selectOneMenu value = "#{localeData.locale}">
-            <f:selectItems value = "#{localeData.countries}" /> 
-            <f:ajax listener="#{localeData.localeChanged}" />
-        </h:selectOneMenu>
-      </ri>
+        <li>
+          <a href="/Tema4"> <h:outputText value="#{strings['home']}"/> </a>
+        </li>
+        <ri>
+            <h:form>
+                <h:commandLink  action="#{localeData.changeLanguage('en')}"
+                    value="En"/>
+                <h:commandLink  action="#{localeData.changeLanguage('ro')}"
+                    value="Ro"/>
+            </h:form>
+        </ri>
     </ul>
      
 </ui:composition>

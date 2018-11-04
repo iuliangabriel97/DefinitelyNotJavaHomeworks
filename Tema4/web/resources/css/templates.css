@@ -29,6 +29,10 @@ ri {
     float: right;
 }
 
+ri a {
+    padding: 8px;
+}
+
 .footer {
     position: fixed;
     left: 0;

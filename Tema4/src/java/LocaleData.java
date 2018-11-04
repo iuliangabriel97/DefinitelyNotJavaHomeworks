@@ -9,45 +9,31 @@
  * @author lucian.alexandru
  */
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 import java.util.Locale;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 
 @ManagedBean
 @SessionScoped
-public class LocaleData {
-   
-    private String locale;
-    private List<String> countries;
+public class LocaleData implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
+    
+    private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
 
-    @PostConstruct
-    public void populateCountries(){
-        countries = new ArrayList<String>();
-        countries.add("English");
-        countries.add("Romanian");
+    public Locale getLocale() {
+        return locale;
     }
 
-    public List<String> getCountries() {
-       return countries;
+    public String getLanguage() {
+        return locale.getLanguage();
     }
 
-    public String getLocale() {
-       return locale;
-    }
-
-    public void setLocale(String locale) {
-       this.locale = locale;
-    }
-
-    //value change event listener
-    public void localeChanged() {
-        UIViewRoot viewRoot = FacesContext.getCurrentInstance().getViewRoot();
-        viewRoot.setLocale(new Locale("ro"));
+    public void changeLanguage(String language) {
+        locale = new Locale(language);
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale(language));
     }
     
 }
