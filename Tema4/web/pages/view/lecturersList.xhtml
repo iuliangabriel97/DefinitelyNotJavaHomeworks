@@ -5,16 +5,20 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"   
-xmlns:h = "http://java.sun.com/jsf/html"
-xmlns:f = "http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/masterTemplate.xhtml" 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" >
     
-    <h:head>
-        <title>Lecturers List</title>
+    <ui:define name="title">Lecturers List</ui:define>
+    
+    <ui:define name="css">
         <h:outputStylesheet library = "css" name = "styles.css"/>
-    </h:head>
+    </ui:define>
     
-    <h:body>
+    <ui:define name="content">
         <h:form>
             <h:dataTable value = "#{lecturerManager.lecturers}" var = "lecturer"
                 styleClass = "lecturersTable"
@@ -37,6 +41,6 @@ xmlns:f = "http://java.sun.com/jsf/core">
         <h:form>
             <h:commandButton id="createLecturer" value="Create Lecturer" action="createLecturer"/>
         </h:form>
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>
 

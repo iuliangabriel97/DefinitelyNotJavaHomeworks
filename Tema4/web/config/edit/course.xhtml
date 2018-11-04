@@ -5,15 +5,15 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
- xmlns:h="http://java.sun.com/jsf/html"
- xmlns:f="http://java.sun.com/jsf/core"
- xmlns:ui="http://java.sun.com/jsf/facelets">
-    <h:head>
-        <title>Course creation</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
-    <h:body>
+<ui:composition template="/templates/masterTemplate.xhtml" 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets" >
+    
+    <ui:define name="title">Course creation</ui:define>
+    
+    <ui:define name="content">
         
         <h:form>
             Course Name
@@ -47,5 +47,5 @@ and open the template in the editor.
             <h:commandButton id="courses" value="Back" action="viewCourses"/>
         </h:form>
         
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>
