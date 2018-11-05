@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition template="/templates/masterTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"   
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="content">
+        
+        <p:dialog id="dataEditDialog" modal="true">
+            
+            <h:form id="dataEditForm">
+                
+                <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+                <ui:insert name="dataEditContent">
+                    Data editor
+                </ui:insert>
+                
+                <p:focus id="formFocus" context="dataEditForm"/>
+                
+                <h:panelGrid id="dataEditButtons" columns="2">
+                    <p:commandButton id="saveBtn" value="Save"/>
+                    <p:commandButton id="cancelBtn" immediate="true"/>
+                </h:panelGrid>
+                
+            </h:form>
+            
+            <p:ajax event="close"/>
+            
+        </p:dialog>
+        
+    </ui:define>
+    
+</ui:composition>

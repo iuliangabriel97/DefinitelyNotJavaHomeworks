@@ -5,16 +5,15 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<ui:composition template="/templates/masterTemplate.xhtml" 
+<ui:composition template="/templates/dataEdit.xhtml" 
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets" >
+    xmlns:ui="http://java.sun.com/jsf/facelets">
     
     <ui:define name="title">Course creation</ui:define>
-    
-    <ui:define name="content">
-        
+
+    <ui:define name="dataEditContent">
         <h:form>
             Course Name
             <h:inputText id="courseName" value="#{course.name}" required="true"/>
@@ -32,8 +31,6 @@ and open the template in the editor.
             <!--<h:inputText id="lecturer_id" value="#{course.lecturer_id}"/>-->
             <!--<br/>-->
             
-            
-            
             <h:selectOneMenu id="whatevs" value="#{course.lecturer_id}">
                 
                 <f:selectItems value="#{lecturerManager.lecturers}" var="lecturer"
@@ -42,10 +39,6 @@ and open the template in the editor.
             <h:commandButton id="submit" value="Submit" action="#{courseManager.addCourse(course)}" />
         </h:form>
         
-        <br/>
-        <h:form>
-            <h:commandButton id="courses" value="Back" action="viewCourses"/>
-        </h:form>
-        
     </ui:define>
+    
 </ui:composition>
