@@ -42,3 +42,19 @@ ri a {
     color: white;
     text-align: center;
 }
+
+.container {
+    width:100%;
+    position: fixed;
+}
+
+.left-element {
+    width:25%;
+    margin:10px;
+    float:left;
+}
+
+.right-element {
+    margin:10px;
+    float:left;
+}

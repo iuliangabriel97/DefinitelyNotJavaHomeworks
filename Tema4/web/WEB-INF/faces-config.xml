@@ -17,7 +17,7 @@
     </resource-bundle>
     
     <navigation-rule>
-        <from-view-id>index.xhtml</from-view-id>
+        <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>viewCourses</from-outcome>
             <to-view-id>/pages/view/coursesList.xhtml?faces-redirect=true</to-view-id>
@@ -32,6 +32,18 @@
             <from-outcome>viewPackages</from-outcome>
             <to-view-id>/pages/view/coursePackagesList.xhtml?faces-redirect=true</to-view-id>
             <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>createCourse</from-outcome>
+            <to-view-id>/config/edit/course.xhtml?faces-redirect=true</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>createLecturer</from-outcome>
+            <to-view-id>/config/edit/lecturer.xhtml?faces-redirect=true</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>createPackage</from-outcome>
+            <to-view-id>/config/edit/coursePackage.xhtml?faces-redirect=true</to-view-id>
         </navigation-case>
     </navigation-rule>
     
@@ -62,10 +74,6 @@
     <navigation-rule>
         <from-view-id>/config/edit/course.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>#{courseManager.addCourse}</from-outcome>
-            <to-view-id>/pages/view/coursesList.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
             <from-outcome>viewCourses</from-outcome>
             <to-view-id>/pages/view/coursesList.xhtml?faces-redirect=true</to-view-id>
         </navigation-case>
@@ -74,10 +82,6 @@
     <navigation-rule>
         <from-view-id>/config/edit/lecturer.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>lecturerManager.addLecturer(lecturer)</from-outcome>
-            <to-view-id>/pages/view/lecturersList.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
             <from-outcome>viewLecturers</from-outcome>
             <to-view-id>/pages/view/lecturersList.xhtml?faces-redirect=true</to-view-id>
         </navigation-case>
@@ -85,10 +89,6 @@
     
     <navigation-rule>
         <from-view-id>/config/edit/coursePackage.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>coursesPackagesManager.addCoursePackage(coursePackage)</from-outcome>
-            <to-view-id>/pages/view/coursePackagesList.xhtml</to-view-id>
-        </navigation-case>
         <navigation-case>
             <from-outcome>viewPackages</from-outcome>
             <to-view-id>/pages/view/coursePackagesList.xhtml?faces-redirect=true</to-view-id>

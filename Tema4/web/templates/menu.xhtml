@@ -6,6 +6,29 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"   
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <f:view locale="#{localeData.locale}"/>
+    <f:loadBundle basename="strings" var="strings"/>
+    
+    <h:form>  
+        <p:menu>
+            <p:submenu label="#{strings['courses']}">
+                <p:menuitem value="#{strings['view']}" action="viewCourses"/>
+                <p:menuitem value="#{strings['create']}" action="createCourse"/>
+            </p:submenu>
+            <p:submenu label="#{strings['lecturers']}">
+                <p:menuitem value="#{strings['view']}" action="viewLecturers"/>
+                <p:menuitem value="#{strings['create']}" action="createLecturer"/>
+            </p:submenu>
+            <p:submenu label="#{strings['packages']}">
+                <p:menuitem value="#{strings['view']}" action="viewPackages"/>
+                <p:menuitem value="#{strings['create']}" action="createPackage"/>
+            </p:submenu>
+        </p:menu>
+    </h:form>  
     
 </ui:composition>

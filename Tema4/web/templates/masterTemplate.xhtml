@@ -21,10 +21,19 @@ and open the template in the editor.
 
     <ui:include src="header.xhtml"/>
     
-    <ui:include src="menu.xhtml"/>
-
+    
     <h:body>
-        <ui:insert name="content" />
+        <div class="container">
+            
+            <div class="left-element">
+                <ui:include src="menu.xhtml"/>
+            </div>
+            
+            <div class="right-element">
+                <ui:insert name="content" />
+            </div>
+            
+        </div>
     </h:body>
 
     <ui:include src="footer.xhtml"/>
