@@ -38,6 +38,8 @@ and open the template in the editor.
             <f:selectItems value="#{lecturerManager.lecturers}" var="lecturer"
                     itemLabel="#{lecturer.name}" itemValue="#{lecturer.id}" />
         </h:selectOneMenu>
+        
+        <h:commandButton id="submit" value="Submit" action="#{courseManager.addCourse(course)}" />
 
     </ui:define>
     
