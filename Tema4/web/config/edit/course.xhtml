@@ -12,33 +12,33 @@ and open the template in the editor.
     xmlns:ui="http://java.sun.com/jsf/facelets">
     
     <ui:define name="title">Course creation</ui:define>
+    
+    <ui:param name="dialogTitle" value="Create course" />
 
     <ui:define name="dataEditContent">
-        <h:form>
-            Course Name
-            <h:inputText id="courseName" value="#{course.name}" required="true"/>
-            <br/>
-            Year of study    
-            <h:inputText id="yearOfStudy" value="#{course.yearOfStudy}" required="true"/>
-            <br/>
-            Semester
-            <h:inputText id="semester" value="#{course.semester}" required="true"/>
-            <br/>
-            Package
-            <h:inputText id="package_" value="#{course.package_}"/>
-            <br/>
-            Lecturer ID
-            <!--<h:inputText id="lecturer_id" value="#{course.lecturer_id}"/>-->
-            <!--<br/>-->
-            
-            <h:selectOneMenu id="whatevs" value="#{course.lecturer_id}">
-                
-                <f:selectItems value="#{lecturerManager.lecturers}" var="lecturer"
-   			itemLabel="#{lecturer.name}" itemValue="#{lecturer.id}" />
-            </h:selectOneMenu>
-            <h:commandButton id="submit" value="Submit" action="#{courseManager.addCourse(course)}" />
-        </h:form>
-        
+
+        Course Name
+        <h:inputText id="courseName" value="#{course.name}" required="true"/>
+        <br/>
+        Year of study    
+        <h:inputText id="yearOfStudy" value="#{course.yearOfStudy}" required="true"/>
+        <br/>
+        Semester
+        <h:inputText id="semester" value="#{course.semester}" required="true"/>
+        <br/>
+        Package
+        <h:inputText id="package_" value="#{course.package_}"/>
+        <br/>
+        Lecturer ID
+        <!--<h:inputText id="lecturer_id" value="#{course.lecturer_id}"/>-->
+        <!--<br/>-->
+
+        <h:selectOneMenu id="whatevs" value="#{course.lecturer_id}">
+
+            <f:selectItems value="#{lecturerManager.lecturers}" var="lecturer"
+                    itemLabel="#{lecturer.name}" itemValue="#{lecturer.id}" />
+        </h:selectOneMenu>
+
     </ui:define>
     
 </ui:composition>

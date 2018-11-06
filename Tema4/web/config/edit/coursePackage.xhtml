@@ -5,31 +5,25 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-
-<ui:composition template="/templates/masterTemplate.xhtml" 
+<ui:composition template="/templates/dataEdit.xhtml" 
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets" >
+    xmlns:ui="http://java.sun.com/jsf/facelets">
     
     <ui:define name="title">Course Package creation</ui:define>
     
-    <ui:define name="content">
-        
-        <h:form>
-            Year of study    
-            <h:inputText id="year" value="#{coursesPackage.year}" required="true"/>
-            <br/>
-            Semester
-            <h:inputText id="semester" value="#{coursesPackage.semester}" required="true"/>
-            <br/>
-            <h:commandButton id="submit" value="Submit" action="#{coursesPackagesManager.addCoursePackage(coursesPackage)}" />
-        </h:form>
-        
+    <ui:param name="dialogTitle" value="Create package" />
+
+    <ui:define name="dataEditContent">
+    
+        Year of study    
+        <h:inputText id="year" value="#{coursesPackage.year}" required="true"/>
         <br/>
-        <h:form>
-            <h:commandButton id="courses" value="Back" action="viewPackages"/>
-        </h:form>
-        
+        Semester
+        <h:inputText id="semester" value="#{coursesPackage.semester}" required="true"/>
+        <br/>
+        <h:commandButton id="submit" value="Submit" action="#{coursesPackagesManager.addCoursePackage(coursesPackage)}" />
+
     </ui:define>
 </ui:composition>
