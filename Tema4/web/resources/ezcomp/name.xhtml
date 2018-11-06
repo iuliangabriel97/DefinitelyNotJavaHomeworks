@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:composite="http://java.sun.com/jsf/composite"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>This content will not be displayed</title>
+    </h:head>
+    <h:body>
+        <composite:interface>
+            <composite:attribute name="value" required="true"/>
+        </composite:interface>
+        <composite:implementation>
+            <h:outputLabel value="Name"/>
+            <h:inputText id="name" value="#{cc.attrs.value}">
+                <f:validator validatorId="nameValidator"/>
+            </h:inputText>
+            <br/>
+        </composite:implementation>
+    </h:body>
+</html>

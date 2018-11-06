@@ -10,19 +10,28 @@ and open the template in the editor.
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets" >
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:ez="http://java.sun.com/jsf/composite/ezcomp">
     
     <ui:define name="title">Lecturer creation</ui:define>
     
     <ui:define name="content">
         
         <h:form>
-            Lecturer Name
-            <h:inputText id="courseName" value="#{lecturer.name}" required="true"/>
-            <br/>
+            <ez:name value="#{lecturer.name}"/>
+<!--            <h:outputLabel value="Lecturer Name"/>
+            <h:inputText id="courseName" value="#{lecturer.name}" required="true">
+                <f:validator validatorId="nameValidator"/>
+            </h:inputText>
+            <br/>-->
             Lecturer website  
-            <h:inputText id="yearOfStudy" value="#{lecturer.url}" required="false"/>
+            <h:inputText id="yearOfStudy" value="#{lecturer.url}" required="false" converter="stringConverter"/>
             <br/>
+            
+                <p:messages id="messages" showDetail="false"
+                autoUpdate="true" closable="true" />
+                <br/>
             <h:commandButton id="submit" value="Submit" action="#{lecturerManager.addLecturer(lecturer)}" />
         </h:form>
         
