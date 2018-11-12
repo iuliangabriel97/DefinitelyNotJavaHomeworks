@@ -1,0 +1,76 @@
+
+CREATE SCHEMA matematica
+  AUTHORIZATION postgres;
+
+
+CREATE SEQUENCE matematica.course_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 2
+  CACHE 1;
+ALTER TABLE matematica.course_id_seq
+  OWNER TO java_lab4;
+
+CREATE SEQUENCE matematica.package_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 4
+  CACHE 1;
+ALTER TABLE matematica.package_id_seq
+  OWNER TO postgres;
+
+CREATE SEQUENCE matematica.teacher_id_seq
+  INCREMENT 1
+  MINVALUE 0
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE matematica.teacher_id_seq
+  OWNER TO postgres;
+
+CREATE TABLE matematica.courses
+(
+  id integer NOT NULL DEFAULT nextval('matematica.course_id_seq'::regclass),
+  name character varying(255),
+  "yearOfStudy" integer,
+  semester integer,
+  "package" integer,
+  lecturer_id integer,
+  CONSTRAINT courses_id_pk PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE matematica.courses
+  OWNER TO java_lab4;
+GRANT ALL ON TABLE matematica.courses TO java_lab4;
+
+CREATE TABLE matematica.courses_packages
+(
+  id integer NOT NULL DEFAULT nextval('matematica.package_id_seq'::regclass),
+  year integer,
+  semester integer,
+  CONSTRAINT courses_packages_id_pk PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE matematica.courses_packages
+  OWNER TO postgres;
+
+CREATE TABLE matematica.teachers
+(
+  id integer NOT NULL DEFAULT nextval('matematica.teacher_id_seq'::regclass),
+  name character varying(255),
+  website character varying(255),
+  CONSTRAINT teachers_id_pk PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE matematica.teachers
+  OWNER TO postgres;
+GRANT ALL ON TABLE matematica.teachers TO postgres;
+GRANT ALL ON TABLE matematica.teachers TO java_lab4;
