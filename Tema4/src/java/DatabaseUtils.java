@@ -1,5 +1,6 @@
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,7 +30,6 @@ public class DatabaseUtils {
    //  Database credentials
    static final String USER = "java_lab4";
    static final String PASS = "a";
-   
    
    public static void insertCourse(Course course) throws SQLException
    {
@@ -127,19 +129,25 @@ public class DatabaseUtils {
         return result;      
    }
    
-   public static List<Course> retrieveCourses() throws SQLException
+   public static List<Course> retrieveCourses(Connection conn) throws SQLException
    {
         List<Course> result = new ArrayList<Course>();
         
         Course course;
        
-        Connection conn = null;
+        DatabaseMetaData metadata = conn.getMetaData();
+        System.out.println("!!!!!!!!!!!!!!!!!!!!" + metadata.getDriverName());
+        System.out.println("!!!!!!!!!!!!!!!!!!!!" + metadata.getURL());
+        
+//        Connection conn = null;
         Statement stmt = null;
        
-        conn = DriverManager.getConnection(DB_URL, USER, PASS);
+//        conn = DriverManager.getConnection(DB_URL, USER, PASS);
         
         stmt = conn.createStatement();
-        String query = "SELECT id, name, \"yearOfStudy\", semester, package, lecturer_id FROM courses";
+        String schema = conn.getSchema();
+        schema = "public";
+        String query = "SELECT id, name, \"yearOfStudy\", semester, package, lecturer_id FROM " + schema + ".courses";
         ResultSet rs = stmt.executeQuery(query);
         
         while(rs.next())
