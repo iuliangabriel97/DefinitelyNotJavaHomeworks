@@ -146,7 +146,7 @@ public class DatabaseUtils {
         
         stmt = conn.createStatement();
         String schema = conn.getSchema();
-        schema = "public";
+//        schema = "public";
         String query = "SELECT id, name, \"yearOfStudy\", semester, package, lecturer_id FROM " + schema + ".courses";
         ResultSet rs = stmt.executeQuery(query);
         
