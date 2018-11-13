@@ -1,6 +1,10 @@
 <glassfish-web-app>
     <resource-ref>
-        <res-ref-name>jdbc/public</res-ref-name>
-        <jndi-name>jdbc/public</jndi-name>
+        <res-ref-name>public</res-ref-name>
+        <jndi-name>public</jndi-name>
+    </resource-ref>
+    <resource-ref>
+        <res-ref-name>matematica</res-ref-name>
+        <jndi-name>matematica</jndi-name>
     </resource-ref>
 </glassfish-web-app>

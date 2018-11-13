@@ -33,7 +33,7 @@ public class CourseManager {
     private List<Course> courses = new ArrayList<Course>();
     private List<Lecturer> lecturers = new ArrayList<Lecturer>();
 
-    @Resource(mappedName = "jdbc/public")
+//    @Resource(mappedName = "public")
 //    @Resource(mappedName = "jdbc/public")
 //    @Resource(name = "jdbc/matematica")
     private DataSource dataSource;
@@ -48,13 +48,14 @@ public class CourseManager {
 
 
 
-//        Context context;
-//        try {
-//            context = new InitialContext(env);
-//            dataSource = (DataSource) context.lookup("jdbc/myDatasource");
-//        } catch (NamingException ex) {
-//            Logger.getLogger(CourseManager.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        Context context;
+        try {
+            context = new InitialContext();
+            dataSource = (DataSource) context.lookup("java:app/public");
+            dataSource = (DataSource) context.lookup("java:app/matematica");
+        } catch (NamingException ex) {
+            Logger.getLogger(CourseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @PostConstruct
