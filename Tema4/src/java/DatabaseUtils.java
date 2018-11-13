@@ -24,12 +24,28 @@ import javax.sql.DataSource;
  */
 public class DatabaseUtils {
    // JDBC driver name and database URL
-   static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+   static final String JDBC_DRIVER = "org.postgresql.Driver";  
    static final String DB_URL = "jdbc:postgresql://localhost:5432/java_lab4";
 
    //  Database credentials
    static final String USER = "java_lab4";
    static final String PASS = "a";
+   
+   public static Connection createConnection() {
+       try {
+            Class.forName(JDBC_DRIVER).newInstance();
+            return DriverManager.getConnection(DB_URL, USER, PASS);
+       } catch (ClassNotFoundException ex) {
+           Logger.getLogger(DatabaseUtils.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (InstantiationException ex) {
+           Logger.getLogger(DatabaseUtils.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (IllegalAccessException ex) {
+           Logger.getLogger(DatabaseUtils.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (SQLException ex) {
+           Logger.getLogger(DatabaseUtils.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return null;
+   }
    
    public static void insertCourse(Course course) throws SQLException
    {
@@ -294,7 +310,6 @@ public class DatabaseUtils {
         
         rs.close();
         stmt.close();
-        conn.close();
         
         if (id_ != null)
             return String.valueOf(id_) + "|" + remote_addr + "|" + request_params + "|" + request_time;

@@ -8,6 +8,11 @@
         <param-name>javax.faces.application.CONFIG_FILES</param-name>
         <param-value>/WEB-INF/faces-config.xml</param-value>
     </context-param>
+    <context-param>
+        <param-name>DatabaseMethod</param-name>
+        <param-value>Singleton</param-value>
+    </context-param>
+    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

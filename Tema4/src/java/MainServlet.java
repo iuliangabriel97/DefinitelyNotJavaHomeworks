@@ -13,6 +13,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,19 +44,38 @@ public class MainServlet extends HttpServlet {
             response.setContentType("text/plain;charset=UTF-8");           
             Context context = null;
             DataSource dataSource = null;
-            try {
-                try {
-                    context = new InitialContext();
-                } catch (NamingException ex) {
-                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                dataSource = (DataSource) context.lookup("java:app/public");
-            } catch (NamingException ex) {
-                Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Connection conn = null;
+            
+            switch (getServletContext().getInitParameter("DatabaseMethod")) {
+                
+                case "ConnectionPool":
+                    try {
+                        context = new InitialContext();
+                        dataSource = (DataSource) context.lookup("java:app/public");
+                        conn = dataSource.getConnection();
+                    } catch (NamingException ex) {
+                        Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                    
+                case "Singleton":
+                    conn = DatabaseSingleton.getConnection();
+                    break;
+                    
+                case "Session":
+                    HttpSession session = request.getSession(true);
+                    if (session.isNew()) {
+                        session.setAttribute("conn", DatabaseUtils.createConnection());
+                    }
+                    conn = (Connection) session.getAttribute("conn");
+            
             }
+            
             try {
                 Integer id = Integer.valueOf(request.getParameter("id"));
-                out.write(DatabaseUtils.retrieveItem(dataSource.getConnection(), id));
+                out.write(DatabaseUtils.retrieveItem(conn, id));
             } catch (SQLException ex) {
                 Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
                 out.write("error");
@@ -75,18 +95,37 @@ public class MainServlet extends HttpServlet {
             
             Context context = null;
             DataSource dataSource = null;
-            try {
-                try {
-                    context = new InitialContext();
-                } catch (NamingException ex) {
-                    Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                dataSource = (DataSource) context.lookup("java:app/public");
-            } catch (NamingException ex) {
-                Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Connection conn = null;
+            
+            switch (getServletContext().getInitParameter("DatabaseMethod")) {
+                
+                case "ConnectionPool":
+                    try {
+                        context = new InitialContext();
+                        dataSource = (DataSource) context.lookup("java:app/public");
+                        conn = dataSource.getConnection();
+                    } catch (NamingException ex) {
+                        Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                    
+                case "Singleton":
+                    conn = DatabaseSingleton.getConnection();
+                    break;
+            
+                case "Session":
+                    HttpSession session = request.getSession(true);
+                    if (session.isNew()) {
+                        session.setAttribute("conn", DatabaseUtils.createConnection());
+                    }
+                    conn = (Connection) session.getAttribute("conn");
+            
             }
+            
             try {
-                DatabaseUtils.insertItem(dataSource.getConnection(), id_, remote_addr, request_time, request_params);
+                DatabaseUtils.insertItem(conn, id_, remote_addr, request_time, request_params);
                 out.write("success");
             } catch (SQLException ex) {
                 Logger.getLogger(MainServlet.class.getName()).log(Level.SEVERE, null, ex);
