@@ -79,6 +79,7 @@ public class DatabaseUtils {
                 + "')";
         stmt.executeUpdate(query);
    }
+   
    public static void insertCoursePackage(CoursesPackage coursePackage) throws SQLException
    {
         Connection conn = null;
@@ -256,5 +257,48 @@ public class DatabaseUtils {
         conn.close();
     
         return lecturer;
+   }
+   
+   public static void insertItem(Connection conn, Integer id, String remote_addr, Integer request_time, String request_params) throws SQLException
+   {
+        Statement stmt = null;
+        
+        stmt = conn.createStatement();
+        String query = "INSERT INTO public.lab6(id, request_time, remote_addr, request_params) " + 
+                "VALUES (" + id + "," + request_time + ",'" + remote_addr + "','" + request_params + "')";
+        stmt.executeUpdate(query);
+   }
+   
+   public static String retrieveItem(Connection conn, Integer id) throws SQLException
+   { 
+        Statement stmt = null;
+     
+        
+        stmt = conn.createStatement();
+        String query = "SELECT id, remote_addr, request_time, request_params FROM public.lab6 WHERE id = " + id;
+        ResultSet rs = stmt.executeQuery(query);
+        
+        Integer id_ = null;
+        int request_time = 0;
+        String remote_addr = "", request_params = "";
+        while(rs.next())
+        {
+             //Retrieve by column name
+            id_  = rs.getInt("id");
+            remote_addr = rs.getString("remote_addr");
+            request_params = rs.getString("request_params");
+            request_time = rs.getInt("request_time");   
+            
+            break;
+        }
+        
+        rs.close();
+        stmt.close();
+        conn.close();
+        
+        if (id_ != null)
+            return String.valueOf(id_) + "|" + remote_addr + "|" + request_params + "|" + request_time;
+        else
+            return "not found";
    }
 }
