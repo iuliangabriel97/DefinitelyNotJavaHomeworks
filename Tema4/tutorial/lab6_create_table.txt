@@ -1,0 +1,18 @@
+-- Table: public.lab6
+
+-- DROP TABLE public.lab6;
+
+CREATE TABLE public.lab6
+(
+  id integer NOT NULL,
+  remote_addr character varying(255),
+  request_time integer,
+  request_params text,
+  CONSTRAINT lab6_id_pk PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.lab6
+  OWNER TO java_lab4;
+GRANT ALL ON TABLE public.lab6 TO java_lab4;
