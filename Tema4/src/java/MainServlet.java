@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -89,9 +90,14 @@ public class MainServlet extends HttpServlet {
             response.setContentType("text/plain;charset=UTF-8");        
             
             Integer id_ = Integer.valueOf(request.getParameter("id"));   
-            String remote_addr = "whatevs";
-            Integer request_time = 1;
-            String request_params = "params";
+            String remote_addr = request.getRemoteAddr();
+            Integer request_time = Integer.valueOf((int) (System.currentTimeMillis() / 1000));
+            StringBuilder paramsBuilder = new StringBuilder();
+            Map<String, String[]> parameterMap = request.getParameterMap();
+            for(String key : parameterMap.keySet()) {
+                paramsBuilder.append(key).append("=").append(parameterMap.get(key)[0]).append(";");
+            }
+            String request_params = paramsBuilder.toString();
             
             Context context = null;
             DataSource dataSource = null;
