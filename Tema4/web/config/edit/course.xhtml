@@ -18,25 +18,25 @@ and open the template in the editor.
     <ui:define name="dataEditContent">
 
         Course Name
-        <h:inputText id="courseName" value="#{course.name}" required="true"/>
+        <h:inputText id="courseName" value="#{course.entity.name}" required="true"/>
         <br/>
         Year of study    
-        <h:inputText id="yearOfStudy" value="#{course.yearOfStudy}" required="true"/>
+        <h:inputText id="yearOfStudy" value="#{course.entity.yearOfStudy}" required="true"/>
         <br/>
         Semester
-        <h:inputText id="semester" value="#{course.semester}" required="true"/>
+        <h:inputText id="semester" value="#{course.entity.semester}" required="true"/>
         <br/>
         Package
-        <h:inputText id="package_" value="#{course.package_}"/>
+        <h:selectOneMenu id="package_" value="#{course.coursePackageId}">
+            <f:selectItem itemLabel="" itemValue="#{null}"/>
+            <f:selectItems value="#{coursesPackagesManager.coursesPackages}" var="coursesPackage"
+                           itemLabel="#{coursesPackage.entity.name}" itemValue="#{coursesPackage.entity.id}" />
+        </h:selectOneMenu>
         <br/>
-        Lecturer ID
-        <!--<h:inputText id="lecturer_id" value="#{course.lecturer_id}"/>-->
-        <!--<br/>-->
-
-        <h:selectOneMenu id="whatevs" value="#{course.lecturer_id}">
-
+        Lecturer
+        <h:selectOneMenu id="whatevs" value="#{course.lecturerId}">
             <f:selectItems value="#{lecturerManager.lecturers}" var="lecturer"
-                    itemLabel="#{lecturer.name}" itemValue="#{lecturer.id}" />
+                    itemLabel="#{lecturer.entity.name}" itemValue="#{lecturer.entity.id}"/>
         </h:selectOneMenu>
         
         <h:commandButton id="submit" value="Submit" action="#{courseManager.addCourse(course)}" />

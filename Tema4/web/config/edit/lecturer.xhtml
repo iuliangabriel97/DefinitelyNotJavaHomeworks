@@ -20,14 +20,9 @@ and open the template in the editor.
     
     <ui:define name="dataEditContent">
         
-        <ez:name value="#{lecturer.name}"/>
-<!--            <h:outputLabel value="Lecturer Name"/>
-        <h:inputText id="courseName" value="#{lecturer.name}" required="true">
-            <f:validator validatorId="nameValidator"/>
-        </h:inputText>
-        <br/>-->
+        <ez:name value="#{lecturer.entity.name}"/>
         Lecturer website  
-        <h:inputText id="yearOfStudy" value="#{lecturer.url}" required="false" converter="stringConverter"/>
+        <h:inputText id="yearOfStudy" value="#{lecturer.entity.url}" required="false" converter="stringConverter"/>
         <br/>
 
         <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />

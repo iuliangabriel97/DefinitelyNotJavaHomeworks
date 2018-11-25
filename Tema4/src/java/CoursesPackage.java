@@ -1,4 +1,5 @@
 
+import entities.CoursePackageEntity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -15,33 +16,14 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class CoursesPackage {
-    private Integer id;
-    private Integer year;
-    private Integer semester;
+    private CoursePackageEntity entity = new CoursePackageEntity();
 
-    public Integer getId() {
-        return id;
+    public CoursePackageEntity getEntity() {
+        return entity;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setEntity(CoursePackageEntity entity) {
+        this.entity = entity;
     }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
-    }
-
-    public Integer getSemester() {
-        return semester;
-    }
-
-    public void setSemester(Integer semester) {
-        this.semester = semester;
-    }
-    
     
 }

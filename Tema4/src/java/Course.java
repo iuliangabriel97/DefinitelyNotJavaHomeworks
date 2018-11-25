@@ -9,6 +9,7 @@
  * @author roungureanu
  */
 
+import entities.CourseEntity;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,61 +20,31 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class Course {
     
-    private String name;
-    private Integer yearOfStudy;
-    private Integer semester;
-    private Integer package_;
-    private Integer lecturer_id;
-    private Lecturer lecturer;
-    
-    public Integer getYearOfStudy() {
-        return yearOfStudy;
+    private CourseEntity entity = new CourseEntity();
+    private Long lecturerId;
+    private Long coursePackageId;
+
+    public Long getCoursePackageId() {
+        return coursePackageId;
     }
 
-    public void setYearOfStudy(Integer yearOfStudy) {
-        this.yearOfStudy = yearOfStudy;
+    public void setCoursePackageId(Long coursePackageId) {
+        this.coursePackageId = coursePackageId;
     }
 
-    public Integer getSemester() {
-        return semester;
+    public Long getLecturerId() {
+        return lecturerId;
     }
 
-    public void setSemester(Integer semester) {
-        this.semester = semester;
-    }
-    
-    public String getName() {
-        return name;
-    }
-    
-    public void setName(String name) {
-        this.name = name;
+    public void setLecturerId(Long lecturerId) {
+        this.lecturerId = lecturerId;
     }
 
-    public Integer getPackage_() {
-        return package_;
+    public CourseEntity getEntity() {
+        return entity;
     }
 
-    public void setPackage_(Integer package_) {
-        this.package_ = package_;
+    public void setEntity(CourseEntity entity) {
+        this.entity = entity;
     }
-
-    public Integer getLecturer_id() {
-        return lecturer_id;
-    }
-
-    public void setLecturer_id(Integer lecture_id) {
-        this.lecturer_id = lecture_id;
-    }
-
-    public Lecturer getLecturer() {
-        return lecturer;
-    }
-
-    public void setLecturer(Lecturer lecturer) {
-        this.lecturer = lecturer;
-    }
-    
-    
-    
 }

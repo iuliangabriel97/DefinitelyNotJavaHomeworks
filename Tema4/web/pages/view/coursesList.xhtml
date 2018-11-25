@@ -26,27 +26,27 @@ and open the template in the editor.
 
                 <h:column>    				
                    <f:facet name = "header">Course</f:facet>    				
-                   #{course.name}
+                   #{course.entity.name}
                 </h:column>
 
                 <h:column>
                    <f:facet name = "header">Year</f:facet>
-                   #{course.yearOfStudy}
+                   #{course.entity.yearOfStudy}
                 </h:column>
 
                 <h:column>
                    <f:facet name = "header">Semester</f:facet>
-                   #{course.semester}
+                   #{course.entity.semester}
                 </h:column>
                 
                 <h:column>
                    <f:facet name = "header">Package</f:facet>
-                   #{course.package_}
+                   #{course.entity.coursePackage.id}
                    </h:column>
                 
                 <h:column>
                    <f:facet name = "header">Lecturer</f:facet>
-                   #{course.lecturer.name}
+                   #{course.entity.lecturer.name}
                 </h:column>
 
             </h:dataTable>

@@ -9,41 +9,23 @@
  * @author LucianAlexandru
  */
 
+import entities.LecturerEntity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 @ManagedBean
 @RequestScoped
 public class Lecturer {
+    private LecturerEntity entity = new LecturerEntity();
 
-    private Integer id;
-    private String name;
-    private String url;
-
-    public Integer getId() {
-        return id;
+    public LecturerEntity getEntity() {
+        return entity;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setEntity(LecturerEntity entity) {
+        this.entity = entity;
     }
-
     
     
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
     
 }

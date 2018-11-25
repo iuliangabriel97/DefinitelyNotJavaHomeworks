@@ -18,10 +18,10 @@ and open the template in the editor.
     <ui:define name="dataEditContent">
     
         Year of study    
-        <h:inputText id="year" value="#{coursesPackage.year}" required="true"/>
+        <h:inputText id="year" value="#{coursesPackage.entity.year}" required="true"/>
         <br/>
         Semester
-        <h:inputText id="semester" value="#{coursesPackage.semester}" required="true"/>
+        <h:inputText id="semester" value="#{coursesPackage.entity.semester}" required="true"/>
         <br/>
         <h:commandButton id="submit" value="Submit" action="#{coursesPackagesManager.addCoursePackage(coursesPackage)}" />
 

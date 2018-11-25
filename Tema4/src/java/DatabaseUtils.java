@@ -1,4 +1,7 @@
 
+import entities.CourseEntity;
+import entities.CoursePackageEntity;
+import entities.LecturerEntity;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -10,6 +13,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.sql.DataSource;
 
 /*
@@ -48,231 +55,129 @@ public class DatabaseUtils {
    }
    
    public static void insertCourse(Course course) throws SQLException
-   {
-        Connection conn = null;
-        Statement stmt = null;
-       
-        conn = DriverManager.getConnection(DB_URL, USER, PASS);
+   {        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
+        EntityManager em = factory.createEntityManager();
         
-        String coursePackage;
-        String lecturerId;
-        
-        if (course.getPackage_() == null)
-            coursePackage = "NULL";
+        CourseEntity entity = course.getEntity();
+
+        LecturerEntity lecturer = em.find(LecturerEntity.class, course.getLecturerId());
+        if (course.getCoursePackageId() != null){
+            CoursePackageEntity coursePackage = em.find(CoursePackageEntity.class, course.getCoursePackageId());
+            entity.setCoursePackage(coursePackage);
+        }
         else
-            coursePackage = course.getPackage_().toString();
+        {
+            entity.setCoursePackage(null);
+        }
         
-        if (course.getLecturer_id() == null)
-            lecturerId = "NULL";
-        else
-            lecturerId = course.getLecturer_id().toString();
+        entity.setLecturer(lecturer);
         
-        stmt = conn.createStatement();
-        String query = "INSERT INTO courses(name, \"yearOfStudy\", semester, package, lecturer_id) VALUES ("
-                + "'" + course.getName() + "',"
-                + course.getYearOfStudy().toString()
-                + ","
-                + course.getSemester().toString()
-                + ","
-                + coursePackage
-                + ","
-                + lecturerId
-                + ")";
-        stmt.executeUpdate(query);
+        em.getTransaction().begin();
+        em.persist(entity);
+        em.getTransaction().commit();
+        
+        em.close();
+        factory.close();
    }
    
    public static void insertLecturer(Lecturer lecturer) throws SQLException
-   {
-        Connection conn = null;
-        Statement stmt = null;
-       
-        conn = DriverManager.getConnection(DB_URL, USER, PASS);
+   {        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
+        EntityManager em = factory.createEntityManager();
         
-        stmt = conn.createStatement();
-        String query = "INSERT INTO teachers(name, website) VALUES ("
-                + "'" + lecturer.getName() + "','"
-                + lecturer.getUrl()
-                + "')";
-        stmt.executeUpdate(query);
+        em.getTransaction().begin();
+        em.persist(lecturer.getEntity());
+        em.getTransaction().commit();
+        
+        em.close();
+        factory.close();
    }
    
    public static void insertCoursePackage(CoursesPackage coursePackage) throws SQLException
-   {
-        Connection conn = null;
-        Statement stmt = null;
-       
-        conn = DriverManager.getConnection(DB_URL, USER, PASS);
+   {        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
+        EntityManager em = factory.createEntityManager();
         
-        stmt = conn.createStatement();
-        String query = "INSERT INTO courses_packages(year, semester) " + 
-                "VALUES (" + coursePackage.getYear() + "," + coursePackage.getSemester() + ")";
-        stmt.executeUpdate(query);
+        em.getTransaction().begin();
+        em.persist(coursePackage.getEntity());
+        em.getTransaction().commit();
+        
+        em.close();
+        factory.close();
    }
    
    public static List<CoursesPackage> retrieveCoursePackages() throws SQLException
    {
         List<CoursesPackage> result = new ArrayList<CoursesPackage>();
-        
         CoursesPackage coursePackage;
-       
-        Connection conn = null;
-        Statement stmt = null;
-       
-        conn = DriverManager.getConnection(DB_URL, USER, PASS);
         
-        stmt = conn.createStatement();
-        String query = "SELECT id, year, semester FROM courses_packages";
-        ResultSet rs = stmt.executeQuery(query);
-        
-        while(rs.next())
-        {
-             //Retrieve by column name
-            int id  = rs.getInt("id");
-            Integer yearOfStudy = rs.getInt("year");
-            Integer semester = rs.getInt("semester");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
+        EntityManager em = factory.createEntityManager();
 
+        Query query = em.createQuery("SELECT cp FROM CoursePackageEntity cp");
+        List<CoursePackageEntity> entities = query.getResultList();
+        
+        for (CoursePackageEntity entity : entities)
+        {
             coursePackage = new CoursesPackage();
-            coursePackage.setId(id);
-            coursePackage.setSemester(semester);
-            coursePackage.setYear(yearOfStudy);
-            
+            coursePackage.setEntity(entity);
             result.add(coursePackage);
         }
         
-        rs.close();
-        stmt.close();
-        conn.close();
-    
+        em.close();
+        factory.close();
+        
         return result;      
    }
    
    public static List<Course> retrieveCourses(Connection conn) throws SQLException
    {
         List<Course> result = new ArrayList<Course>();
-        
         Course course;
-       
-        DatabaseMetaData metadata = conn.getMetaData();
-        System.out.println("!!!!!!!!!!!!!!!!!!!!" + metadata.getDriverName());
-        System.out.println("!!!!!!!!!!!!!!!!!!!!" + metadata.getURL());
         
-//        Connection conn = null;
-        Statement stmt = null;
-       
-//        conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
+        EntityManager em = factory.createEntityManager();
+
+        Query query = em.createQuery("SELECT c FROM CourseEntity c");
+        List<CourseEntity> entities = query.getResultList();
         
-        stmt = conn.createStatement();
-        String schema = conn.getSchema();
-//        schema = "public";
-        String query = "SELECT id, name, \"yearOfStudy\", semester, package, lecturer_id FROM " + schema + ".courses";
-        ResultSet rs = stmt.executeQuery(query);
-        
-        while(rs.next())
+        for (CourseEntity entity : entities)
         {
-             //Retrieve by column name
-            int id  = rs.getInt("id");
-            String name = rs.getString("name");
-            Integer yearOfStudy = rs.getInt("yearOfStudy");
-            Integer semester = rs.getInt("semester");
-            Integer package_ = rs.getInt("package");
-            if (rs.wasNull())
-                package_ = null;
-            Integer lecturer_id = rs.getInt("lecturer_id");
-            if (rs.wasNull())
-                lecturer_id = null;
-            
             course = new Course();
-            course.setName(name);
-            course.setSemester(semester);
-            course.setYearOfStudy(yearOfStudy);
-            course.setPackage_(package_);
-            course.setLecturer_id(lecturer_id);
-            
-            Lecturer lecturer = null;
-            if (lecturer_id != null)
-                lecturer = DatabaseUtils.retrieveLecturer(lecturer_id);
-            
-            course.setLecturer(lecturer);
-            
+            course.setEntity(entity);
             result.add(course);
         }
         
-        rs.close();
-        stmt.close();
-        conn.close();
-    
-        return result;      
+        em.close();
+        factory.close();
+        
+        return result;  
    }
    
    public static List<Lecturer> retrieveLecturers() throws SQLException
    {
+       
         List<Lecturer> result = new ArrayList<Lecturer>();
-        
         Lecturer lecturer;
-       
-        Connection conn = null;
-        Statement stmt = null;
-       
-        conn = DriverManager.getConnection(DB_URL, USER, PASS);
         
-        stmt = conn.createStatement();
-        String query = "SELECT id, name, website FROM teachers";
-        ResultSet rs = stmt.executeQuery(query);
-        
-        while(rs.next())
-        {
-             //Retrieve by column name
-            int id  = rs.getInt("id");
-            String name = rs.getString("name");
-            String website = rs.getString("website");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
+        EntityManager em = factory.createEntityManager();
 
+        Query query = em.createQuery("SELECT l FROM LecturerEntity l");
+        List<LecturerEntity> entities = query.getResultList();
+        
+        for (LecturerEntity entity : entities)
+        {
             lecturer = new Lecturer();
-            lecturer.setId(id);
-            lecturer.setName(name);
-            lecturer.setUrl(website);
-            
+            lecturer.setEntity(entity);
             result.add(lecturer);
         }
         
-        rs.close();
-        stmt.close();
-        conn.close();
-    
-        return result;      
-   }
-   
-   public static Lecturer retrieveLecturer(Integer lecturer_id) throws SQLException
-   { 
-        Lecturer lecturer = null;
-       
-        Connection conn = null;
-        Statement stmt = null;
-       
-        conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        em.close();
+        factory.close();
         
-        stmt = conn.createStatement();
-        String query = "SELECT id, name, website FROM teachers WHERE id = " + lecturer_id;
-        ResultSet rs = stmt.executeQuery(query);
-        
-        while(rs.next())
-        {
-             //Retrieve by column name
-            int id  = rs.getInt("id");
-            String name = rs.getString("name");
-            String website = rs.getString("website");
-
-            lecturer = new Lecturer();
-            lecturer.setName(name);
-            lecturer.setUrl(website);
-            
-            break;
-        }
-        
-        rs.close();
-        stmt.close();
-        conn.close();
-    
-        return lecturer;
+        return result;    
    }
    
    public static void insertItem(Connection conn, Integer id, String remote_addr, Integer request_time, String request_params) throws SQLException
