@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 /**
  *
@@ -36,6 +37,28 @@ public class PreferenceEntity implements Serializable {
     @JoinColumn( name = "course_id", referencedColumnName = "id", nullable = false )
     private CourseEntity course;
 
+    @Transient
+    private Long studentId;
+
+    public Long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
+
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
+    }
+    
+    @Transient
+    private Long courseId;
+    
     public Long getId() {
         return id;
     }

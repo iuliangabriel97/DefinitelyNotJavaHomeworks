@@ -256,6 +256,13 @@ public class DatabaseUtils {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
         EntityManager em = factory.createEntityManager();
         
+        
+        CourseEntity courseEntity = em.find(CourseEntity.class, preference.getCourseId());
+        preference.setCourse(courseEntity);
+        
+        StudentEntity studentEntity = em.find(StudentEntity.class, preference.getStudentId());
+        preference.setStudent(studentEntity);
+        
         em.getTransaction().begin();
         em.persist(preference);
         em.getTransaction().commit();

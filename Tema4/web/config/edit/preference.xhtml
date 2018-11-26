@@ -18,14 +18,14 @@ and open the template in the editor.
     <ui:define name="dataEditContent">
     
         Student
-        <h:selectOneMenu value="#{preferenceEntity.student}">
+        <h:selectOneMenu value="#{preferenceEntity.studentId}">
             <f:selectItems value="#{studentManager.getStudents()}" var="student"
                     itemLabel="#{student.name}" itemValue="#{student.id}"/>
         </h:selectOneMenu>
         <br/>
         
         Course
-        <h:selectOneMenu value="#{preferenceEntity.course}">
+        <h:selectOneMenu value="#{preferenceEntity.courseId}">
             <f:selectItems value="#{courseManager.courses}" var="course"
                     itemLabel="#{course.entity.name}" itemValue="#{course.entity.id}"/>
         </h:selectOneMenu>
