@@ -34,6 +34,11 @@
             <redirect />
         </navigation-case>
         <navigation-case>
+            <from-outcome>viewStudents</from-outcome>
+            <to-view-id>/pages/view/studentList.xhtml?faces-redirect=true</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
             <from-outcome>createCourse</from-outcome>
             <to-view-id>/config/edit/course.xhtml?faces-redirect=true</to-view-id>
             <redirect />
@@ -46,6 +51,16 @@
         <navigation-case>
             <from-outcome>createPackage</from-outcome>
             <to-view-id>/config/edit/coursePackage.xhtml?faces-redirect=true</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>createStudent</from-outcome>
+            <to-view-id>/config/edit/student.xhtml?faces-redirect=true</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>createPreference</from-outcome>
+            <to-view-id>/config/edit/preference.xhtml?faces-redirect=true</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>

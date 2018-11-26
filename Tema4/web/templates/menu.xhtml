@@ -28,6 +28,11 @@ and open the template in the editor.
                 <p:menuitem value="#{strings['view']}" action="viewPackages"/>
                 <p:menuitem value="#{strings['create']}" action="createPackage"/>
             </p:submenu>
+            <p:submenu label="#{strings['students']}">
+                <p:menuitem value="#{strings['view']}" action="viewStudents"/>
+                <p:menuitem value="#{strings['create']}" action="createStudent"/>
+                <p:menuitem value="Add Preference" action="createPreference"/>
+            </p:submenu>
         </p:menu>
     </h:form>  
     

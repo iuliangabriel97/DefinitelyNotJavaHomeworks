@@ -2,6 +2,8 @@
 import entities.CourseEntity;
 import entities.CoursePackageEntity;
 import entities.LecturerEntity;
+import entities.PreferenceEntity;
+import entities.StudentEntity;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -220,5 +222,45 @@ public class DatabaseUtils {
             return String.valueOf(id_) + "|" + remote_addr + "|" + request_params + "|" + request_time;
         else
             return "not found";
+   }
+   
+    public static List<StudentEntity> retrieveAllStudents() throws SQLException {
+       
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
+        EntityManager em = factory.createEntityManager();
+
+        Query query = em.createQuery("SELECT c FROM StudentEntity c");
+        List<StudentEntity> entities = query.getResultList();
+        
+        em.close();
+        factory.close();
+        
+        return entities; 
+   }
+    
+    public static void insertStudent(StudentEntity student) throws SQLException
+   {        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
+        EntityManager em = factory.createEntityManager();
+        
+        em.getTransaction().begin();
+        em.persist(student);
+        em.getTransaction().commit();
+        
+        em.close();
+        factory.close();
+   }
+    
+    public static void insertPreference(PreferenceEntity preference) throws SQLException
+   {        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
+        EntityManager em = factory.createEntityManager();
+        
+        em.getTransaction().begin();
+        em.persist(preference);
+        em.getTransaction().commit();
+        
+        em.close();
+        factory.close();
    }
 }

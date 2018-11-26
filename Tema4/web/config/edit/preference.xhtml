@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition template="/templates/dataEdit.xhtml" 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:define name="title">Student creation</ui:define>
+    
+    <ui:param name="dialogTitle" value="Create preference" />
+
+    <ui:define name="dataEditContent">
+    
+        Student
+        <h:selectOneMenu value="#{preferenceEntity.student}">
+            <f:selectItems value="#{studentManager.getStudents()}" var="student"
+                    itemLabel="#{student.name}" itemValue="#{student.id}"/>
+        </h:selectOneMenu>
+        <br/>
+        
+        Course
+        <h:selectOneMenu value="#{preferenceEntity.course}">
+            <f:selectItems value="#{courseManager.courses}" var="course"
+                    itemLabel="#{course.entity.name}" itemValue="#{course.entity.id}"/>
+        </h:selectOneMenu>
+        <br/>
+        Order
+        <h:inputText id="order" value="#{preferenceEntity.ord}" required="true"/>
+        <br/>
+        <h:commandButton id="submit" value="Submit" action="#{studentManager.addPreference(preferenceEntity)}" />
+
+    </ui:define>
+</ui:composition>
