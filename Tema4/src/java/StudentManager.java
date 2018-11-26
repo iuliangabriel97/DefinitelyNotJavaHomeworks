@@ -32,6 +32,15 @@ public class StudentManager {
             return new ArrayList<StudentEntity>();
         }
     }
+    
+    public List<StudentEntity> getIncompleteStudents () {
+        try {
+            return DatabaseUtils.retrieveIncompleteStudents();
+        } catch (SQLException ex) {
+            Logger.getLogger(LecturerManager.class.getName()).log(Level.SEVERE, null, ex);
+            return new ArrayList<StudentEntity>();
+        }
+    }
 
     public void addStudent(StudentEntity student) {
         try {

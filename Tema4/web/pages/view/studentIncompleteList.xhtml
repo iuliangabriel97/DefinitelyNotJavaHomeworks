@@ -20,7 +20,7 @@ and open the template in the editor.
     
     <ui:define name="dataViewContent">
         <h:form>
-            <h:dataTable value = "#{studentManager.getStudents()}" var = "student"
+            <h:dataTable value = "#{studentManager.getIncompleteStudents()}" var = "student"
                 styleClass = "lecturersTable"
                 headerClass = "lecturersTableHeader"
                 rowClasses = "lecturersTableOddRow,lecturersTableEvenRow">

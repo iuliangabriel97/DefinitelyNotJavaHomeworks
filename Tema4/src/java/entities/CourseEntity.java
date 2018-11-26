@@ -91,6 +91,14 @@ public class CourseEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public List<PreferenceEntity> getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(List<PreferenceEntity> preferences) {
+        this.preferences = preferences;
+    }
 
     @Override
     public int hashCode() {

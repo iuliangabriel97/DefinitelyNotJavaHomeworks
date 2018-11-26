@@ -67,7 +67,12 @@ public class StudentEntity implements Serializable {
     }
     
     public String getOrderedPreferences() {
-        return String.valueOf(preferences.size());
+        StringBuilder sb = new StringBuilder();
+        for (PreferenceEntity preference : preferences) {
+            sb.append(preference.getCourse().getName());
+            sb.append(", ");
+        }
+        return sb.toString();
     }
     
     @Override

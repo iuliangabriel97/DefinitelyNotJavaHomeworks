@@ -24,6 +24,11 @@
             <redirect />
         </navigation-case>
         <navigation-case>
+            <from-outcome>viewOptionalCourses</from-outcome>
+            <to-view-id>/pages/view/optionalCoursesList.xhtml?faces-redirect=true</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
             <from-outcome>viewLecturers</from-outcome>
             <to-view-id>/pages/view/lecturersList.xhtml?faces-redirect=true</to-view-id>
             <redirect />
@@ -36,6 +41,11 @@
         <navigation-case>
             <from-outcome>viewStudents</from-outcome>
             <to-view-id>/pages/view/studentList.xhtml?faces-redirect=true</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>viewIncompleteStudents</from-outcome>
+            <to-view-id>/pages/view/studentIncompleteList.xhtml?faces-redirect=true</to-view-id>
             <redirect />
         </navigation-case>
         <navigation-case>

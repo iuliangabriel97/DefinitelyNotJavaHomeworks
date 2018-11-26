@@ -18,6 +18,7 @@ and open the template in the editor.
         <p:menu>
             <p:submenu label="#{strings['courses']}">
                 <p:menuitem value="#{strings['view']}" action="viewCourses"/>
+                <p:menuitem value="Optional" action="viewOptionalCourses"/>
                 <p:menuitem value="#{strings['create']}" action="createCourse"/>
             </p:submenu>
             <p:submenu label="#{strings['lecturers']}">
@@ -30,6 +31,7 @@ and open the template in the editor.
             </p:submenu>
             <p:submenu label="#{strings['students']}">
                 <p:menuitem value="#{strings['view']}" action="viewStudents"/>
+                <p:menuitem value="View incomplete" action="viewIncompleteStudents"/>
                 <p:menuitem value="#{strings['create']}" action="createStudent"/>
                 <p:menuitem value="Add Preference" action="createPreference"/>
             </p:submenu>

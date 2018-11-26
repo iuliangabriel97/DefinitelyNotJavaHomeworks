@@ -157,6 +157,30 @@ public class DatabaseUtils {
         return result;  
    }
    
+   public static List<Course> retrieveOptionalCourses(Connection conn) throws SQLException
+   {
+        List<Course> result = new ArrayList<Course>();
+        Course course;
+        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
+        EntityManager em = factory.createEntityManager();
+
+        Query query = em.createQuery("SELECT c FROM CourseEntity c WHERE c.coursePackage IS NOT NULL");
+        List<CourseEntity> entities = query.getResultList();
+        
+        for (CourseEntity entity : entities)
+        {
+            course = new Course();
+            course.setEntity(entity);
+            result.add(course);
+        }
+        
+        em.close();
+        factory.close();
+        
+        return result;  
+   }
+   
    public static List<Lecturer> retrieveLecturers() throws SQLException
    {
        
@@ -230,6 +254,20 @@ public class DatabaseUtils {
         EntityManager em = factory.createEntityManager();
 
         Query query = em.createQuery("SELECT c FROM StudentEntity c");
+        List<StudentEntity> entities = query.getResultList();
+        
+        em.close();
+        factory.close();
+        
+        return entities; 
+   }
+    
+    public static List<StudentEntity> retrieveIncompleteStudents() throws SQLException {
+       
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
+        EntityManager em = factory.createEntityManager();
+
+        Query query = em.createQuery("SELECT c FROM StudentEntity c WHERE size(c.preferences)<3");
         List<StudentEntity> entities = query.getResultList();
         
         em.close();

@@ -75,6 +75,15 @@ public class CourseManager {
     public List<Course> getCourses() {
         return courses;
     }
+    
+    public List<Course> getOptionalCourses() {
+        try {
+            return DatabaseUtils.retrieveOptionalCourses(dataSource.getConnection());
+        } catch (SQLException ex) {
+            Logger.getLogger(CourseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new ArrayList<Course>();
+    }
 
     public List<Lecturer> getLecturers()
     {
