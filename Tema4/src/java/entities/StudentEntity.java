@@ -6,6 +6,10 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.CascadeType;
@@ -68,9 +72,19 @@ public class StudentEntity implements Serializable {
     
     public String getOrderedPreferences() {
         StringBuilder sb = new StringBuilder();
-        for (PreferenceEntity preference : preferences) {
+        List<PreferenceEntity> orderedPreferences = new ArrayList<PreferenceEntity>(preferences);
+        
+        Collections.sort(orderedPreferences, new Comparator<PreferenceEntity>() {
+            @Override
+            public int compare(PreferenceEntity o1, PreferenceEntity o2) {
+                return o1.getOrd() - o2.getOrd();
+            }
+        });
+        
+        for (PreferenceEntity preference : orderedPreferences) {
             sb.append(preference.getCourse().getName());
-            sb.append(", ");
+            if (preference != orderedPreferences.get(orderedPreferences.size() - 1))
+                sb.append(", ");
         }
         return sb.toString();
     }
