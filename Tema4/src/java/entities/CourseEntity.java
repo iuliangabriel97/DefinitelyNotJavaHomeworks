@@ -100,6 +100,16 @@ public class CourseEntity implements Serializable {
         this.preferences = preferences;
     }
 
+    public String getScore()
+    {
+        int sum = 0;
+        for (PreferenceEntity preference : preferences)
+        {
+            sum += preference.getOrd();
+        }
+        return String.valueOf(sum);
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
