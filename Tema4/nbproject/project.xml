@@ -18,6 +18,21 @@
                     <file>${file.reference.postgresql-9.4.1209.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
+                <library dirs="200">
+                    <file>${libs.eclipselink.classpath}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${libs.eclipselinkmodelgen.classpath}</file>
+                </library>
+                <library dirs="200">
+                    <file>${libs.hibernate4-persistence.classpath}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${libs.hibernate4-persistencemodelgen.classpath}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
             </web-module-libraries>
             <web-module-additional-libraries>
                 <library dirs="200">

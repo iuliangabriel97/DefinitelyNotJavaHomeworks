@@ -20,12 +20,24 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class LecturerEntity extends UserEntity implements Serializable {
-
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
     private String url;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "lecturer")
     private List<CourseEntity> courses;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     public List<CourseEntity> getCourses() {
         return courses;
     }

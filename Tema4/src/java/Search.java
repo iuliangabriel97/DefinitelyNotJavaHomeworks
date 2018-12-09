@@ -87,10 +87,15 @@ public class Search {
     
     public void doSearch() throws SQLException
     {
-        System.out.println("!!!!!!!!!!!!!!!!" + this.toString());
-        this.courses = DatabaseUtils.retrieveCourses(dataSource.getConnection());
+        this.courses = DatabaseUtils.searchCourses(stringToInteger(yearOfStudy), stringToInteger(semester), courseName, optionalCourse);
     }
 
+    private Integer stringToInteger(String str) {
+        if (str == null || str.length() == 0)
+            return null;
+        return Integer.valueOf(str);
+    }
+    
     @Override
     public String toString() {
         return "Search{" + "courseName=" + courseName + ", yearOfStudy=" + yearOfStudy + ", semester=" + semester + ", optionalCourse=" + optionalCourse + '}';

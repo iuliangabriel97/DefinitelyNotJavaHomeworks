@@ -1,5 +1,6 @@
 
 import entities.CourseEntity;
+import entities.CourseEntity_;
 import entities.CoursePackageEntity;
 import entities.LecturerEntity;
 import entities.PreferenceEntity;
@@ -175,12 +176,28 @@ public class DatabaseUtils {
         
         Root<CourseEntity> e = query.from(CourseEntity.class);
         
-        Predicate condition;
-        
         if (year != null)
         {
-            condition = builder.equal(e.get(CourseEntity_), year.intValue());
+            Predicate condition = builder.equal(e.get(CourseEntity_.yearOfStudy), year.intValue());
             query.where(condition);
+        }
+        
+        if (semester != null)
+        {
+            Predicate condition = builder.equal(e.get(CourseEntity_.semester), semester.intValue());
+            query.where(condition);
+        }
+        
+        if (name != null)
+        {
+            Predicate condition = builder.like(e.get(CourseEntity_.name), name);
+            query.where(condition);
+        }
+        
+        if (optionalCourse != null)
+        {
+            //Predicate condition = builder.exists(e.get(CourseEntity_.coursePackage));
+            //query.where(condition);
         }
         
         

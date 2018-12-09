@@ -52,7 +52,6 @@ public class CourseManager {
         try {
             context = new InitialContext();
             dataSource = (DataSource) context.lookup("java:app/public");
-            dataSource = (DataSource) context.lookup("java:app/matematica");
         } catch (NamingException ex) {
             Logger.getLogger(CourseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
