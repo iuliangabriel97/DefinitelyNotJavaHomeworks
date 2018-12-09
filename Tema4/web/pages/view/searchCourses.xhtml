@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+
+<ui:composition template="/templates/dataEdit.xhtml" 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ez="http://java.sun.com/jsf/composite/ezcomp">
+    
+    <ui:define name="title">Search courses</ui:define>
+    
+    <ui:param name="dialogTitle" value="Create lecturer" />
+    
+    <ui:define name="dataEditContent">
+        
+        Course name contains
+        <h:inputText id="courseName" value="#{search.courseName}" required="false"/>
+        <br/>
+        Optional
+        <h:selectBooleanCheckbox value="#{search.optionalCourse}" />
+        <br/>
+        Year is
+        <h:inputText id="yearOfStudy" value="#{search.yearOfStudy}" required="false"/>
+        <br/>
+        Semester is
+        <h:inputText id="semester" value="#{search.semester}" required="false"/>
+        <br/>
+        <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
+        <br/>
+        <h:commandButton id="submit" value="Search" action="#{search.doSearch}" />
+        
+        <h:form>
+            <h:dataTable value = "#{search.courses}" var = "course"
+                styleClass = "coursesTable"
+                headerClass = "coursesTableHeader"
+                rowClasses = "coursesTableOddRow,coursesTableEvenRow">
+
+                <h:column>    				
+                   <f:facet name = "header">Course</f:facet>    				
+                   #{course.entity.name}
+                </h:column>
+
+                <h:column>
+                   <f:facet name = "header">Year</f:facet>
+                   #{course.entity.yearOfStudy}
+                </h:column>
+
+                <h:column>
+                   <f:facet name = "header">Semester</f:facet>
+                   #{course.entity.semester}
+                </h:column>
+                
+                <h:column>
+                   <f:facet name = "header">Package</f:facet>
+                   #{course.entity.coursePackage.id}
+                   </h:column>
+                
+                <h:column>
+                   <f:facet name = "header">Lecturer</f:facet>
+                   #{course.entity.lecturer.name}
+                </h:column>
+
+            </h:dataTable>
+        </h:form>
+        
+    </ui:define>
+</ui:composition>

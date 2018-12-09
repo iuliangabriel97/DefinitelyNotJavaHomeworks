@@ -19,6 +19,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.sql.DataSource;
 
 /*
@@ -143,6 +148,44 @@ public class DatabaseUtils {
 
         Query query = em.createQuery("SELECT c FROM CourseEntity c");
         List<CourseEntity> entities = query.getResultList();
+        
+        for (CourseEntity entity : entities)
+        {
+            course = new Course();
+            course.setEntity(entity);
+            result.add(course);
+        }
+        
+        em.close();
+        factory.close();
+        
+        return result;  
+   }
+   
+      public static List<Course> searchCourses(Integer year, Integer semester, String name, Boolean optionalCourse) throws SQLException
+   {
+        List<Course> result = new ArrayList<Course>();
+        Course course;
+        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
+        EntityManager em = factory.createEntityManager();
+
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<CourseEntity> query = builder.createQuery(CourseEntity.class);
+        
+        Root<CourseEntity> e = query.from(CourseEntity.class);
+        
+        Predicate condition;
+        
+        if (year != null)
+        {
+            condition = builder.equal(e.get(CourseEntity_), year.intValue());
+            query.where(condition);
+        }
+        
+        
+        TypedQuery<CourseEntity> q = em.createQuery(query);
+        List<CourseEntity> entities = q.getResultList();
         
         for (CourseEntity entity : entities)
         {

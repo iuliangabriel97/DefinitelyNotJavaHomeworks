@@ -73,6 +73,11 @@
             <to-view-id>/config/edit/preference.xhtml?faces-redirect=true</to-view-id>
             <redirect />
         </navigation-case>
+        <navigation-case>
+            <from-outcome>searchCourses</from-outcome>
+            <to-view-id>/pages/view/searchCourses.xhtml?faces-redirect=true</to-view-id>
+            <redirect />
+        </navigation-case>
     </navigation-rule>
     
 </faces-config>
