@@ -165,7 +165,7 @@ public class DatabaseUtils {
    
       public static List<Course> searchCourses(Integer year, Integer semester, String name, Boolean optionalCourse) throws SQLException
    {
-        List<Course> result = new ArrayList<Course>();
+       List<Course> result = new ArrayList<Course>();
         Course course;
         
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
@@ -176,30 +176,48 @@ public class DatabaseUtils {
         
         Root<CourseEntity> e = query.from(CourseEntity.class);
         
+        Predicate condition = null;
+        
         if (year != null)
         {
-            Predicate condition = builder.equal(e.get(CourseEntity_.yearOfStudy), year.intValue());
-            query.where(condition);
+            condition = builder.equal(e.get(CourseEntity_.yearOfStudy), year.intValue());
         }
         
         if (semester != null)
         {
-            Predicate condition = builder.equal(e.get(CourseEntity_.semester), semester.intValue());
-            query.where(condition);
+            if (condition != null)
+                condition = builder.and(
+                    condition,
+                    builder.equal(e.get(CourseEntity_.semester), semester.intValue())
+                );
+            else
+                condition = builder.equal(e.get(CourseEntity_.semester), semester.intValue());
         }
         
         if (name != null)
         {
-            Predicate condition = builder.like(e.get(CourseEntity_.name), name);
-            query.where(condition);
+            if (condition != null)
+                condition = builder.and(
+                    condition,
+                    builder.like(e.get(CourseEntity_.name), "%" + name + "%")
+                );
+            else
+                condition = builder.like(e.get(CourseEntity_.name), "%" + name + "%");
         }
         
-        if (optionalCourse != null)
+        if (optionalCourse != null && optionalCourse)
         {
+            if (condition != null)
+                condition = builder.and(
+                    condition,
+                    builder.isNull(e.get(CourseEntity_.coursePackage))
+                );
+            else
+                condition = builder.isNull(e.get(CourseEntity_.coursePackage));
             //Predicate condition = builder.exists(e.get(CourseEntity_.coursePackage));
             //query.where(condition);
         }
-        
+        query.where(condition);
         
         TypedQuery<CourseEntity> q = em.createQuery(query);
         List<CourseEntity> entities = q.getResultList();
