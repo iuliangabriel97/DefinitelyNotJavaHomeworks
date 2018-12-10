@@ -5,6 +5,14 @@
  */
 
 
+import entities.CourseEntity;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import org.eclipse.persistence.config.CacheUsage;
+import org.eclipse.persistence.config.QueryHints;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
@@ -14,8 +22,25 @@ import org.junit.Test;
  */
 public class PerformanceTests {
     @Test
-    public void studentsExists() {
-        System.out.println("!!!!");
-        assertTrue(1 != 0);
+    public void secondLevelCache() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Tema4PU");
+        EntityManager em = factory.createEntityManager();
+        
+        long startTime;
+        long durationWithCache;
+        long durationWithoutCache;
+        
+        startTime = System.currentTimeMillis();
+        Query queryWithCache = em.createQuery("SELECT c FROM CourseEntity c");
+        queryWithCache.getResultList();
+        durationWithCache = System.currentTimeMillis() - startTime;
+        
+        startTime = System.currentTimeMillis();
+        Query queryWithoutCache = em.createQuery("SELECT c FROM CourseEntity c");
+        queryWithoutCache.setHint(QueryHints.CACHE_USAGE, CacheUsage.DoNotCheckCache);
+        queryWithoutCache.getResultList();
+        durationWithoutCache = System.currentTimeMillis() - startTime;
+        
+        assertTrue(durationWithCache < durationWithoutCache);
     }
 }
