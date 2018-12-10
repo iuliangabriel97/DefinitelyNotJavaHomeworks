@@ -1027,8 +1027,12 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.postgresql-9.4.1209.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${libs.eclipselink.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${libs.eclipselinkmodelgen.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.EclipseLink-GlassFish-v3.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.junit_4.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${libs.PostgreSQLDriver.classpath}" todir="${build.web.dir}//"/>
         <copyfiles files="${libs.primefaces.classpath}" todir="${build.web.dir}//"/>
+        <copyfiles files="${libs.eclipselink.classpath}" todir="${build.web.dir}//"/>
+        <copyfiles files="${libs.eclipselinkmodelgen.classpath}" todir="${build.web.dir}//"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
@@ -1038,8 +1042,12 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.postgresql-9.4.1209.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.eclipselink.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.eclipselinkmodelgen.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${libs.EclipseLink-GlassFish-v3.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${libs.junit_4.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.PostgreSQLDriver.classpath}" todir="${build.web.dir}//"/>
         <copyfiles files="${libs.primefaces.classpath}" todir="${build.web.dir}//"/>
+        <copyfiles files="${libs.eclipselink.classpath}" todir="${build.web.dir}//"/>
+        <copyfiles files="${libs.eclipselinkmodelgen.classpath}" todir="${build.web.dir}//"/>
     </target>
     <target depends="init" if="dist.ear.dir" name="-clean-webinf-lib">
         <delete dir="${build.web.dir}/WEB-INF/lib"/>
