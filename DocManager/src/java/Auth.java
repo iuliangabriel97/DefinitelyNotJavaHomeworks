@@ -1,9 +1,9 @@
 
 import java.io.IOException;
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -27,15 +27,33 @@ public class Auth {
 
     private String username;
     private String password;
+    
     private String originalURL;
+    private String loginURL;
+    
+    public String getUsername() {
+        return username;
+    }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     @PostConstruct
     public void init() {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         originalURL = (String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_REQUEST_URI);
 
         if (originalURL == null) {
-            originalURL = externalContext.getRequestContextPath() + "/home.xhtml";
+            originalURL = externalContext.getRequestContextPath() + "/index.xhtml";
         } else {
             String originalQuery = (String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_QUERY_STRING);
 
@@ -43,6 +61,8 @@ public class Auth {
                 originalURL += "?" + originalQuery;
             }
         }
+        
+        loginURL = externalContext.getRequestContextPath() + "/login.xhtml";
     }
 
     @EJB
@@ -61,6 +81,7 @@ public class Auth {
         } catch (ServletException e) {
             // Handle unknown username/password in request.login().
             context.addMessage(null, new FacesMessage("Unknown login"));
+            externalContext.redirect(loginURL);
         }
     }
 
