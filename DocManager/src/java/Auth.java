@@ -75,8 +75,8 @@ public class Auth {
 
         try {
             request.login(username, password);
-            User user = userService.find(username, password);
-            externalContext.getSessionMap().put("user", user);
+//            User user = userService.find(username, password);
+//            externalContext.getSessionMap().put("user", user);
             externalContext.redirect(originalURL);
         } catch (ServletException e) {
             // Handle unknown username/password in request.login().
