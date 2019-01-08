@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <head>
+        <title>User Registration</title>
+    </head>
+    <body>
+        <h:form>
+            <h:outputLabel for="username" value="Username" />
+            <h:inputText id="username" value="#{auth.username}" required="true" />
+            <h:message for="username" />
+            <br />
+            <h:outputLabel for="password" value="Password" />
+            <h:inputSecret id="password" value="#{auth.password}" required="true" />
+            <h:message for="password" />
+            <br />
+            <h:commandButton value="Register" action="#{auth.register}" />
+        </h:form>
+    </body>
+</html>
+

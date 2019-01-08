@@ -1,4 +1,5 @@
 
+import entities.User;
 import java.io.IOException;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -30,6 +31,7 @@ public class Auth {
     
     private String originalURL;
     private String loginURL;
+    private String uploadURL;
     
     public String getUsername() {
         return username;
@@ -63,11 +65,21 @@ public class Auth {
         }
         
         loginURL = externalContext.getRequestContextPath() + "/login.xhtml";
+        uploadURL = externalContext.getRequestContextPath() + "/upload.xhtml";
     }
 
     @EJB
     private UserService userService;
 
+    public void register() throws IOException {
+        FacesContext context = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = context.getExternalContext();
+        HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+
+        User user = userService.insert(username, password, "admin");
+        externalContext.redirect(loginURL);
+    }
+    
     public void login() throws IOException {
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext externalContext = context.getExternalContext();
@@ -75,9 +87,11 @@ public class Auth {
 
         try {
             request.login(username, password);
-//            User user = userService.find(username, password);
-//            externalContext.getSessionMap().put("user", user);
-            externalContext.redirect(originalURL);
+            User user = userService.find(username, password);
+            if(user == null)
+                throw new ServletException("User not found");
+            externalContext.getSessionMap().put("user", user);
+            externalContext.redirect(uploadURL);
         } catch (ServletException e) {
             // Handle unknown username/password in request.login().
             context.addMessage(null, new FacesMessage("Unknown login"));
