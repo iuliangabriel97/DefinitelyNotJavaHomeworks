@@ -52,7 +52,7 @@ public class UserService {
         
         for (User u: users)
         {
-            if (u.getName().equals(username))
+            if (u.getName().equals(username) && u.getPassword().equals(password))
                 return u;
         }
         

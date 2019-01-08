@@ -86,7 +86,6 @@ public class Auth {
         HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
         try {
-            request.login(username, password);
             User user = userService.find(username, password);
             if(user == null)
                 throw new ServletException("User not found");
